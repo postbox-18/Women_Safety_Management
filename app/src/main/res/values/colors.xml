@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+<color name="colorPrimary">#0060DD</color>
+<color name="colorPrimaryDark">#0060DD</color>
+<color name="colorAccent">#FF6600</color>
+<color name="light_gray">#21000000</color>
+<color name="Search_button">#27AE60</color>
+<color name="Info_button">#0fb9b1</color>
+<color name="Add_button">#2d98da</color>
+<color name="White">#FFFEF9</color>
+<color name="light_silver">#EEF1F2</color>
+<color name="White2">#FFFEFF</color>
+<color name="lightGray">#f5f4f2</color>
+<color name="light_grey">#999</color>
+<color name="red_brown">#c0392b</color>
+<color name="red_pink">#E42434</color>
+<color name="light_red_pink">#FFECEE</color>
+<color name="red">#FF0000</color>
+<color name="black">#000</color>
+<color name="green">#27AE60</color>
+
+<color name="default_grey">#7a7a7a</color>
+
+<color name="common_google_signin_btn_text_dark_focused">#fff</color>
+<color name="back_white">#F8F8F8</color>
+<color name="bg_divider">#f1787878</color>
+<color name="navigation_grey">#9c9ea1</color>
+<color name="icon_color">#0a408a</color>
+<color name="light_orange_color">#FEECE1</color>
+<color name="light_blue_color">#F2F8FF</color>
+
+<color name="text_silver">#7C7C7C</color>
+<color name="sky_blue">#63AAEB</color>
+    <color name="skin_color">#FDEAEF</color>
+</resources>

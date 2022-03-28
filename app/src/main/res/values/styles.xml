@@ -1,0 +1,175 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar"
+
+
+        >
+
+        <!--For MaterialComponents, we need to define these, so that default dons not come-->
+        <item name="textInputStyle">@style/myFilledBox</item>
+        <!-- Customize your theme here. -->
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/White</item>
+
+
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+  
+
+        <!-- specify shared element transitions -->
+      
+
+    </style>
+
+    <!---->
+    <style name="myFilledBoxs" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/colorPrimary</item>
+        <item name="boxBackgroundColor">@color/light_silver</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="hintTextColor">@color/colorPrimary</item>
+        <item name="boxCornerRadiusBottomEnd">5dp</item>
+        <item name="boxCornerRadiusTopStart">5dp</item>
+        <item name="boxCornerRadiusBottomStart">5dp</item>
+        <item name="boxCornerRadiusTopEnd">5dp</item>
+    </style>
+    <style name="myFilledBoxs_red_pink" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/red_pink</item>
+        <item name="boxBackgroundColor">@color/light_silver</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="hintTextColor">@color/red_pink</item>
+        <item name="boxCornerRadiusBottomEnd">5dp</item>
+        <item name="boxCornerRadiusTopStart">5dp</item>
+        <item name="boxCornerRadiusBottomStart">5dp</item>
+        <item name="boxCornerRadiusTopEnd">5dp</item>
+    </style>
+    <!---->
+    <!---->
+    <style name="filledBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/colorPrimary</item>
+        <item name="boxBackgroundColor">@color/light_blue_color</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="hintTextColor">@color/colorPrimary</item>
+        <item name="boxCornerRadiusBottomEnd">5dp</item>
+        <item name="boxCornerRadiusTopStart">5dp</item>
+        <item name="boxCornerRadiusBottomStart">5dp</item>
+        <item name="boxCornerRadiusTopEnd">5dp</item>
+    </style>
+    <!---->
+
+    <color name="BackgroundtWhiteColor">#FFFFFF</color>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CustomFontStyle_White">
+ 
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CustomFontStyle_Black">
+
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="CustomFontStyle_Toolbar">
+
+        <item name="android:textSize">18dp</item>
+        <item name="android:actionMenuTextColor">@android:color/black</item>
+        <item name="android:titleTextAppearance">@android:color/white</item>
+    </style>
+    <style name="custom_small_helper_font" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/light_grey</item>
+        <item name="android:layout_margin">0dp</item>
+    </style>
+
+    <style name="circularimage">
+        <item name="android:shape">oval</item>
+        <item name="android:radius">50dp</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="myFilledBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@android:color/white</item>
+
+    </style>
+    <style name="myFullscreenAlertDialogStyle" parent="Theme.AppCompat.Light.NoActionBar">      //no actionbar, but status bar exists
+        <item name="android:windowFullscreen">true</item>                       //remove status bar
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>        //smooth animation
+        <item name="colorAccent">@color/colorAccent</item>                      //change button text color
+    </style>
+<style name="MyTabs" parent="Widget.MaterialComponents.TabLayout">
+    <item name="android:textSize">30dp</item>
+    <item name="android:textStyle">italic</item>
+    <item name="textInputStyle">@color/colorPrimary</item>
+    <item name="tabRippleColor">@color/colorAccent</item>
+ 
+    <item name="tabIndicatorColor">@color/light_blue_color</item>
+    <item name="tabBackground">@color/light_blue_color</item>
+    <!---->
+    </style>
+    <style name="MyCustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">30dp</item>
+        <item name="android:textStyle">italic</item>
+     
+        <item name="tabIndicatorColor">@color/light_blue_color</item>
+        
+
+    </style>
+    <style name="MyCustomTabText2" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">16sp</item>
+    <item name="android:textStyle">bold</item>
+    </style>
+    <style name="MyCustomTabText_new" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">8sp</item>
+    </style>
+    <style name="NavigationDrawerText" parent="AppTheme">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#0a408a</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="NavigationDrawerTextSmall" parent="AppTheme">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/navigation_grey</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="NavigationDrawerTextItem" parent="AppTheme">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#0a408a</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="CardView.Light">
+        <item name="cardBackgroundColor">@color/cardview_light_background</item>
+    </style>
+
+    <style name="CustomViewAllPhone" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="CustomViewAllTab" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

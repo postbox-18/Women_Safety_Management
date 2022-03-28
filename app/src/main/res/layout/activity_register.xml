@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/light_red_pink"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/head"
+    android:layout_width="match_parent"
+    app:layout_constraintBottom_toTopOf="@id/name_ct"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:padding="10dp"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/heads"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTER"
+        android:textStyle="bold|italic"
+        android:textSize="22dp"
+        android:textColor="@color/red_pink"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@id/about"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign up here to get the most out of device"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/red_pink"
+        android:textStyle="italic"
+        android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@id/heads" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/name_ct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="3dp"
+        app:contentPadding="5dp"
+        app:layout_constraintBottom_toTopOf="@id/registerbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toBottomOf="@id/head">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+      android:layout_margin="10dp"
+        android:orientation="vertical">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/myFilledBoxs_red_pink"
+        app:layout_constraintBottom_toTopOf="@id/phonenum_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/head">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:textColor="@color/red_pink"
+            android:drawableStart="@drawable/ic_man_vector__22_"
+            android:drawablePadding="10dp"
+            android:layout_height="wrap_content"
+            android:hint="NAME" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phonenum_layout"
+        android:layout_width="match_parent"
+        style="@style/myFilledBoxs_red_pink"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toTopOf="@id/pin_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phonenum"
+            android:layout_width="match_parent"
+            android:drawableStart="@drawable/ic_phone__1_"
+            android:drawablePadding="10dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red_pink"
+            android:hint="PHONE NUMBER" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pin_layout"
+        android:layout_width="match_parent"
+      
+        style="@style/myFilledBoxs_red_pink"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/cpin_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phonenum_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_key"
+            android:drawablePadding="10dp"
+            android:textColor="@color/red_pink"
+            android:hint="PIN" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cpin_layout"
+        android:layout_width="match_parent"
+        style="@style/myFilledBoxs_red_pink"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toTopOf="@id/registerbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pin_layout" >
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:textColor="@color/red_pink"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_key"
+        android:drawablePadding="10dp"
+        android:hint="CONFIRM PIN"
+        android:id="@+id/cpin"
+    />
+    </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/registerbtn"
+        android:layout_width="match_parent"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_right_arrow"
+        android:background="@drawable/button_red_pink"
+        android:text="Register"
+        android:layout_margin="20dp"
+        android:textStyle="bold"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_ct" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
