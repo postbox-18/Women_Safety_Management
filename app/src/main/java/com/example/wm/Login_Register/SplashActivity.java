@@ -1,19 +1,16 @@
-package com.example.wm;
+package com.example.wm.Login_Register;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.wm.Fragment.LoginFragment;
+import com.example.wm.Fragment.RegisterFragment;
+import com.example.wm.R;
+import com.example.wm.WebService_Class;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,15 +38,15 @@ public class SplashActivity extends Activity {
 
 
 
-        new Timer().schedule(new TimerTask() {
+       /* new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
                 finish();
             }
-        }, 4000);
-
-        /*if (WebService_Class.get_WebServiceOriginal() == null) {
+        }, 4000);*/
+        new WebService_Class(this);
+        if ( WebService_Class.getPin() == null) {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -59,9 +56,15 @@ public class SplashActivity extends Activity {
         }, 4000);
 
         } else {
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    finish();
+                }
+            }, 4000);
 
-
-        }*/
+        }
 
 
     }

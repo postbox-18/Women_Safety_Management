@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/light_red_pink"
     android:layout_height="match_parent"
-    tools:context=".Login_Register.RegisterActivity">
+    tools:context=".Fragment.RegisterFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/head"
         android:layout_width="match_parent"
@@ -161,4 +162,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name_ct" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
