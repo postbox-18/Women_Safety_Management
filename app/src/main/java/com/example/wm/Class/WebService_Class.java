@@ -1,4 +1,4 @@
-package com.example.wm;
+package com.example.wm.Class;
 
 import android.content.Context;
 import android.content.SharedPreferences;

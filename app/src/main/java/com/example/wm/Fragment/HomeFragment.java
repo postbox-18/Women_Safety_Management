@@ -1,4 +1,4 @@
-package com.example.wm;
+package com.example.wm.Fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -10,6 +10,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.wm.R;
+import com.example.wm.Class.WebService_Class;
 
 /**
  * A simple {@link Fragment} subclass.

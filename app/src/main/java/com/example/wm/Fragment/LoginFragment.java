@@ -9,11 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.alimuzaffar.lib.pin.PinEntryEditText;
-import com.example.wm.BaseFragment;
-import com.example.wm.HomeFragment;
-import com.example.wm.MyLog;
+import com.example.wm.Class.MyLog;
 import com.example.wm.R;
-import com.example.wm.WebService_Class;
+import com.example.wm.Class.WebService_Class;
 
 
 public class LoginFragment extends BaseFragment {

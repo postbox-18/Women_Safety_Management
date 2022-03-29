@@ -1,4 +1,6 @@
-package com.example.wm;
+package com.example.wm.Interface;
+
+import com.example.wm.BuildConfig;
 
 import java.util.Locale;
 

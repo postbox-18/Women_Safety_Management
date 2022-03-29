@@ -1,6 +1,8 @@
-package com.example.wm;
+package com.example.wm.Class;
 
 import android.util.Log;
+
+import com.example.wm.Interface.MyConstants;
 
 public class MyLog {
     public static void d(String TAG, String message) {

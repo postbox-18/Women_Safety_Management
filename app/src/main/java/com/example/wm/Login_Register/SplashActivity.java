@@ -7,10 +7,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.wm.Fragment.LoginFragment;
-import com.example.wm.Fragment.RegisterFragment;
 import com.example.wm.R;
-import com.example.wm.WebService_Class;
+import com.example.wm.Class.WebService_Class;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
