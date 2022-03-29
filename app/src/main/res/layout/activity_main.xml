@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/id_CoordinatorLayout"
     android:layout_width="match_parent"
+    android:background="@color/light_red_pink"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:focusable="true"
@@ -41,8 +42,7 @@
         android:background="@color/BackgroundtWhiteColor"
         app:elevation="15dp"
         app:itemBackground="@color/BackgroundtWhiteColor"
-        app:itemIconTint="@drawable/navbar_icon_style"
-        app:itemTextColor="@drawable/navbar_text_style"
+
         app:layout_anchor="@+id/Fragment"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,9 +50,9 @@
         app:layout_constraintHorizontal_weight="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Fragment"
-
         app:menu="@menu/bottom_nav_menu" />
 
-
+<!--    app:itemIconTint="@drawable/navbar_icon_style"
+        app:itemTextColor="@drawable/navbar_text_style"-->
 </androidx.constraintlayout.widget.ConstraintLayout>
 
