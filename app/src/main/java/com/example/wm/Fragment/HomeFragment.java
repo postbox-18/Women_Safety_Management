@@ -2,6 +2,8 @@ package com.example.wm.Fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -10,7 +12,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
 import com.example.wm.R;
 import com.example.wm.Class.WebService_Class;
 
@@ -25,10 +31,12 @@ public class HomeFragment extends BaseFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private LottieAnimationView press_send_button,send_email;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+  //  private ImageView id_tick;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -69,6 +77,55 @@ public class HomeFragment extends BaseFragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Web_Config", MODE_PRIVATE);
         String temp_URL = sharedPreferences.getString("Pin", null);
         String pin=new WebService_Class(getActivity()).getPin();
+
+       /* id_tick = view.findViewById(R.id.id_tick);*/
+        send_email = view.findViewById(R.id.send_email);
+        press_send_button = view.findViewById(R.id.press_send_button);
+        press_send_button
+                .addAnimatorUpdateListener(
+                        (animation) -> {
+
+                            // Do something.
+                        });
+        press_send_button
+                .playAnimation();
+
+        if (press_send_button.isAnimating()) {
+
+            // Do something.
+        }
+
+        press_send_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                press_send_button.setVisibility(View.GONE);
+                send_email.setVisibility(View.VISIBLE);
+                Toast.makeText(getActivity(), "SENDING MESSAGE", Toast.LENGTH_SHORT).show();
+                send_email
+                        .addAnimatorUpdateListener(
+                                (animation) -> {
+
+                                    // Do something.
+                                });
+                send_email
+                        .playAnimation();
+
+                if (send_email.isAnimating()) {
+
+                    // Do something.
+                }
+            }
+        });
+
+        send_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                send_email.setVisibility(View.GONE);
+                press_send_button.setVisibility(View.VISIBLE);
+                Toast.makeText(getActivity(), "STOPPED", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         return view;
 

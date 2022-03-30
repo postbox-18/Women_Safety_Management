@@ -69,14 +69,19 @@ public class LoginFragment extends BaseFragment {
                         pinEntry.setText(null);
                     }*/
                     login_pin=pinEntry.getText().toString();
-                    MyLog.e(TAG,"pin>>"+login_pin+"=="+pin);
-                    if(login_pin.equals(pin))
+                   // MyLog.e(TAG,"pin>>"+login_pin+"=="+pin);
+                    if(!pin.equals(login_pin))
                     {
+                        startActivity(new Intent(getActivity(), HomeFragment.class));
+                        MyLog.e(TAG,"pin>>"+pin+"CRT"+login_pin);
                         Toast.makeText(getActivity(), "SUCCESS", Toast.LENGTH_SHORT).show();
+
                     } else {
+                        MyLog.e(TAG,"pin>>"+pin+"InCRT"+login_pin);
                         Toast.makeText(getActivity(), "FAIL", Toast.LENGTH_SHORT).show();
                         pinEntry.setText(null);
-                        startActivity(new Intent(getActivity(), HomeFragment.class));
+
+
                     }
                 }
             });

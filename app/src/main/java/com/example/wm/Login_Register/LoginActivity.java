@@ -15,7 +15,7 @@ import com.example.wm.Class.WebService_Class;
 public class LoginActivity extends AppCompatActivity {
     private PinEntryEditText pinEntry;
 
-    private String login_pin,pin,TAG="LoginFragment";
+    private String login_pin,pin,TAG="LoginActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +37,14 @@ public class LoginActivity extends AppCompatActivity {
                     }*/
                     login_pin=pinEntry.getText().toString();
                     MyLog.e(TAG,"pin>>"+login_pin+"=="+pin);
-                    if(login_pin.equals(pin))
+                    if(pin.equals(login_pin))
                     {
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         Toast.makeText(LoginActivity.this, "SUCCESS", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(LoginActivity.this, "FAIL", Toast.LENGTH_SHORT).show();
                         pinEntry.setText(null);
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
                     }
                 }
             });
