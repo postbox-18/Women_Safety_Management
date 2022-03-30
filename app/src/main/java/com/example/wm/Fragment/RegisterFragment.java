@@ -109,13 +109,30 @@ public class RegisterFragment extends BaseFragment {
         s_pin=pin.getText().toString();
         s_name=name.getText().toString();
         s_phonenum=phonenum.getText().toString();
-        if(s_name.isEmpty() || s_phonenum.isEmpty() || s_pin.isEmpty() || s_cpin.isEmpty())
+        if(s_name.isEmpty())
         {
             name.setError("please enter a value",getResources().getDrawable(R.drawable.ic_warning_symbol));
         }
+        else if(s_phonenum.isEmpty() )
+        {
+            phonenum.setError("please enter a value",getResources().getDrawable(R.drawable.ic_warning_symbol));
+        }
+        else if(s_pin.isEmpty() )
+        {
+            pin.setError("please enter a value",getResources().getDrawable(R.drawable.ic_warning_symbol));
+        }
+        else if(s_cpin.isEmpty() )
+        {
+            cpin.setError("please enter a value",getResources().getDrawable(R.drawable.ic_warning_symbol));
+        }
         else if(!s_cpin.equals(s_pin))
         {
-            name.setError("please enter a value",getResources().getDrawable(R.drawable.ic_x_circle));
+            pin.setError("both password are same",getResources().getDrawable(R.drawable.ic_x_circle));
+            cpin.setError("both password are same",getResources().getDrawable(R.drawable.ic_x_circle));
+        }
+        else if(s_phonenum.length()!=10)
+        {
+            phonenum.setError("please enter a valid  phone number",getResources().getDrawable(R.drawable.ic_warning_symbol));
         }
         else {
             new WebService_Class(getContext()).setPin(s_pin);

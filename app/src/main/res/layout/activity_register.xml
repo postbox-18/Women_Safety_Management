@@ -77,6 +77,7 @@
                     android:textColor="@color/red_pink"
                     android:drawableStart="@drawable/ic_man_vector__22_"
                     android:drawablePadding="10dp"
+                    android:singleLine="true"
                     android:layout_height="wrap_content"
                     android:hint="NAME" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -86,19 +87,22 @@
                 android:layout_width="match_parent"
                 style="@style/myFilledBoxs_red_pink"
                 android:layout_height="wrap_content"
-
                 app:layout_constraintBottom_toTopOf="@id/pin_layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/name_layout">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/phonenum"
                     android:layout_width="match_parent"
                     android:drawableStart="@drawable/ic_phone__1_"
                     android:drawablePadding="10dp"
                     android:layout_height="wrap_content"
+                    android:maxLength="10"
+                    android:padding="15dp"
                     android:textColor="@color/red_pink"
+                    android:singleLine="true"
+                    android:inputType="number"
                     android:hint="PHONE NUMBER" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,6 +124,9 @@
                     android:drawableStart="@drawable/ic_key"
                     android:drawablePadding="10dp"
                     android:padding="15dp"
+                    android:maxLength="4"
+                    android:inputType="number"
+                    android:singleLine="true"
                     android:textColor="@color/red_pink"
                     android:hint="PIN" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -140,6 +147,9 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_key"
                     android:padding="15dp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:maxLength="4"
                     android:drawablePadding="10dp"
                     android:hint="CONFIRM PIN"
                     android:id="@+id/cpin"

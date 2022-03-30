@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/drawable/button_accent.xml" value="0.255" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/drawable/button_red_pink.xml" value="0.121" />
+        <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/drawable/edittext_box_white.xml" value="0.198" />
+        <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/drawable/ic_delete.xml" value="0.198" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/drawable/ic_edit.xml" value="0.1765" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/drawable/ic_home.xml" value="0.1765" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/drawable/ic_key.xml" value="0.212" />
@@ -18,8 +20,9 @@
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/cardview_addadapter.xml" value="0.4013761467889908" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/fragment_base.xml" value="0.25" />
-        <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/fragment_edit.xml" value="0.25" />
+        <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/fragment_edit.xml" value="0.264" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/fragment_register_activitys.xml" value="0.25" />

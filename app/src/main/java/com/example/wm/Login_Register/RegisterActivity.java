@@ -21,8 +21,8 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText name,phonenum;
-    private AutoCompleteTextView pin,cpin;
+    private EditText name;
+    private AutoCompleteTextView pin,cpin,phonenum;
     private String  s_name,s_phonenum,s_pin,s_cpin,TAG="RegisterActivity";
     private AppCompatButton register;
     private TextInputLayout name_layout,phonenum_layout,pin_layout,cpin_layout;
@@ -44,7 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
         phonenum_layout=findViewById(R.id.phonenum_layout);
         addTextChanger(phonenum,phonenum_layout);
         setOnFoucsChangeLister(phonenum,phonenum_layout);
-
+        phonenum.requestFocus();
+        phonenum.setThreshold(10);
 
 
         pin=findViewById(R.id.pin);
