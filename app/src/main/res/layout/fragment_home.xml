@@ -1,56 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".Fragment.HomeFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lootieanim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/recyclerview_add_num"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1">
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/press_send_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="500dp"
             android:layout_centerInParent="true"
             android:baselineAligned="false"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/recyclerview_add_num"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/press_start_button" />
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/send_email"
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:layout_centerInParent="true"
             android:baselineAligned="false"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/recyclerview_add_num"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             android:scaleType="centerCrop"
             android:visibility="gone"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/send_email" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_add_num"
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/press_send_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:itemCount="5"
-            tools:listitem="@layout/cardview_addadapter"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/send_email" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_add_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cornor_bend_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lootieanim"
+        app:layout_constraintVertical_weight="1"
+        tools:itemCount="5"
+        android:layout_gravity="bottom"
+        tools:listitem="@layout/cardview_addadapter" />
 </LinearLayout>
