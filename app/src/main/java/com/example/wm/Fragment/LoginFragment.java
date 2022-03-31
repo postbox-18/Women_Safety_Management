@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.alimuzaffar.lib.pin.PinEntryEditText;
 import com.example.wm.Class.MyLog;
 import com.example.wm.R;
-import com.example.wm.Class.WebService_Class;
+import com.example.wm.WebService_Class;
 
 
 public class LoginFragment extends BaseFragment {

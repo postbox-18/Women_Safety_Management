@@ -10,7 +10,7 @@ import com.alimuzaffar.lib.pin.PinEntryEditText;
 import com.example.wm.MainActivity;
 import com.example.wm.Class.MyLog;
 import com.example.wm.R;
-import com.example.wm.Class.WebService_Class;
+import com.example.wm.WebService_Class;
 
 public class LoginActivity extends AppCompatActivity {
     private PinEntryEditText pinEntry;

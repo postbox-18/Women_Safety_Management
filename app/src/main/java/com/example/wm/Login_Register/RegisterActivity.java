@@ -10,13 +10,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.wm.MainActivity;
 import com.example.wm.R;
-import com.example.wm.Class.WebService_Class;
+import com.example.wm.WebService_Class;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -69,10 +70,18 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+             //   hideKeyboard(register);
                 Getregisterdata();
             }
         });
     }
+  /*  public void hideKeyboard(View view) {
+        try {
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        } catch(Exception ignored) {
+        }
+    }*/
     private void Getregisterdata() {
         s_cpin=cpin.getText().toString();
         s_pin=pin.getText().toString();

@@ -14,14 +14,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import com.example.wm.Adapter.AddAdapter;
 import com.example.wm.Class.AddPhonenum;
+import com.example.wm.Class.MyLog;
 import com.example.wm.R;
+import com.example.wm.WebService_Class;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -89,6 +95,13 @@ public class EditFragment extends Fragment {
         setOnFoucsChangeLister(phonenum,phonenum_layout);
 
         addPhonenumArrayList =new ArrayList<>();
+        String json=new WebService_Class(getActivity()).getArraylist();
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<AddPhonenum>>() {}.getType();
+
+        //Post post = gson.fromJson(reader, Post.class);
+        //AddPhonenum addPhonenumArray = gson.fromJson(json, AddPhonenum.class);
+        addPhonenumArrayList=gson.fromJson(json, type);
         recyclerView = view.findViewById(R.id.recyclerview_add_num);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -102,6 +115,7 @@ public class EditFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Getadddata();
+
             }
         });
 
@@ -127,6 +141,7 @@ public class EditFragment extends Fragment {
             phonenum.setError("please enter a valid  phone number",getResources().getDrawable(R.drawable.ic_warning_symbol));
         }
         else {
+            hideKeyboard(add);
             Date currentTime = Calendar.getInstance().getTime();
             AddPhonenum addPhonenum=new AddPhonenum(
                     s_name,
@@ -134,23 +149,34 @@ public class EditFragment extends Fragment {
 
             );
             addPhonenumArrayList.add(addPhonenum);
-            for(int i=0;i>addPhonenumArrayList.size();i++)
+          /*  for(int i=0;i<addPhonenumArrayList.size();i++)
             {
 
-            }
+            }*/
             if(addPhonenumArrayList.size()>0) {
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 recyclerView.setNestedScrollingEnabled(false);
                 addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList);
                 recyclerView.setAdapter(addAdapter);
+                Gson gson = new Gson();
+
+                // getting data from gson and storing it in a string.
+                String json = gson.toJson(addPhonenumArrayList);
+                new WebService_Class(getContext()).setArraylist(json);
             }
 
         }
 
 
     }
-
+      public void hideKeyboard(View view) {
+           try {
+               InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+               imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+           } catch(Exception ignored) {
+           }
+       }
     private void addTextChanger(EditText editText,TextInputLayout textInputLayout) {
         final int[] len = new int[1];
 
