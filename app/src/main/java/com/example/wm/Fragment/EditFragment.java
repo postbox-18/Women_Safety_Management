@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.wm.Adapter.AddAdapter;
 import com.example.wm.Class.AddPhonenum;
@@ -31,6 +32,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,10 +49,8 @@ public class EditFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private AddAdapter addAdapter;
-    private ArrayList<AddPhonenum> addPhonenumArrayList;
+    private List<AddPhonenum> addPhonenumArrayList=new ArrayList<>();
     private RecyclerView recyclerView;
-
-
     private String mParam1;
     private String mParam2;
 
@@ -102,13 +102,19 @@ public class EditFragment extends Fragment {
         //Post post = gson.fromJson(reader, Post.class);
         //AddPhonenum addPhonenumArray = gson.fromJson(json, AddPhonenum.class);
         addPhonenumArrayList=gson.fromJson(json, type);
-        recyclerView = view.findViewById(R.id.recyclerview_add_num);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setNestedScrollingEnabled(false);
-        addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList);
-        recyclerView.setAdapter(addAdapter);
-
+        recyclerView=view.findViewById(R.id.recyclerview_add_num);
+        /*if(addPhonenumArrayList.size()>0 || addPhonenumArrayList!=null) {
+            recyclerView = view.findViewById(R.id.recyclerview_add_num);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerView.setNestedScrollingEnabled(false);
+            addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList);
+            recyclerView.setAdapter(addAdapter);
+        }
+        else
+        {
+            Toast.makeText(getContext(), "empty", Toast.LENGTH_SHORT).show();
+        }*/
         add=view.findViewById(R.id.id_add);
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +148,7 @@ public class EditFragment extends Fragment {
         }
         else {
             hideKeyboard(add);
+            addPhonenumArrayList=new ArrayList<>();
             Date currentTime = Calendar.getInstance().getTime();
             AddPhonenum addPhonenum=new AddPhonenum(
                     s_name,
@@ -153,7 +160,7 @@ public class EditFragment extends Fragment {
             {
 
             }*/
-            if(addPhonenumArrayList.size()>0) {
+            if(addPhonenumArrayList.size()>0 || addPhonenumArrayList!=null) {
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 recyclerView.setNestedScrollingEnabled(false);
@@ -164,6 +171,10 @@ public class EditFragment extends Fragment {
                 // getting data from gson and storing it in a string.
                 String json = gson.toJson(addPhonenumArrayList);
                 new WebService_Class(getContext()).setArraylist(json);
+            }
+            else
+            {
+                Toast.makeText(getContext(), "empty", Toast.LENGTH_SHORT).show();
             }
 
         }

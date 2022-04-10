@@ -2,16 +2,27 @@ package com.example.wm.Fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -20,12 +31,16 @@ import com.example.wm.Class.AddPhonenum;
 import com.example.wm.Class.MyLog;
 import com.example.wm.R;
 import com.example.wm.WebService_Class;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,10 +53,14 @@ public class HomeFragment extends BaseFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private LottieAnimationView press_send_button,send_email;
+    //private LottieAnimationView press_send_button,send_email;
+    private AppCompatButton btn;
     private RecyclerView recyclerview_details;
     private AddAdapter addAdapter;
-    private ArrayList<AddPhonenum> addPhonenumArrayList;
+    private FusedLocationProviderClient mFusedLocationClient;
+    private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
+    private List<AddPhonenum> addPhonenumArrayList=new ArrayList<>();
+    private TextView user_location;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -100,17 +119,34 @@ public class HomeFragment extends BaseFragment {
     // MyLog.d(TAG,"ClickeTest:updatedMedicine frag:"+new GsonBuilder().setPrettyPrinting().create().toJson(updatedMedicine));
         //MyLog.e(TAG,"list>>home>>"+addPhonenumArrayList.size()+">>"+new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
         /* id_tick = view.findViewById(R.id.id_tick);*/
-        recyclerview_details = view.findViewById(R.id.recyclerview_add_num);
-        recyclerview_details.setHasFixedSize(true);
-        recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerview_details.setNestedScrollingEnabled(false);
-        addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList);
-        recyclerview_details.setAdapter(addAdapter);
+        if(addPhonenumArrayList.size()>0 || addPhonenumArrayList!=null) {
+            recyclerview_details = view.findViewById(R.id.recyclerview_add_num);
+            recyclerview_details.setHasFixedSize(true);
+            recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerview_details.setNestedScrollingEnabled(false);
+            addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList);
+            recyclerview_details.setAdapter(addAdapter);
+        }
+        else
+        {
+            Toast.makeText(getContext(), "empty", Toast.LENGTH_SHORT).show();
+        }
 
 
-        send_email = view.findViewById(R.id.send_email);
-        press_send_button = view.findViewById(R.id.press_send_button);
-        press_send_button
+        user_location = view.findViewById(R.id.user_location);
+
+
+        /*send_email = view.findViewById(R.id.send_email);
+        press_send_button = view.findViewById(R.id.press_send_button);*/
+
+        btn = view.findViewById(R.id.btn);
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
+
+
+
+       /* press_send_button
                 .addAnimatorUpdateListener(
                         (animation) -> {
 
@@ -122,11 +158,20 @@ public class HomeFragment extends BaseFragment {
         if (press_send_button.isAnimating()) {
 
             // Do something.
-        }
+        }*/
 
-        press_send_button.setOnClickListener(new View.OnClickListener() {
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                fetchLocation();
+                Toast.makeText(getActivity(), "SENDING MESSAGE", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        /*press_send_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fetchLocation();
                 press_send_button.setVisibility(View.GONE);
                 send_email.setVisibility(View.VISIBLE);
                 Toast.makeText(getActivity(), "SENDING MESSAGE", Toast.LENGTH_SHORT).show();
@@ -144,9 +189,9 @@ public class HomeFragment extends BaseFragment {
                     // Do something.
                 }
             }
-        });
+        });*/
 
-        send_email.setOnClickListener(new View.OnClickListener() {
+/*        send_email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 send_email.setVisibility(View.GONE);
@@ -154,9 +199,104 @@ public class HomeFragment extends BaseFragment {
                 Toast.makeText(getActivity(), "STOPPED", Toast.LENGTH_SHORT).show();
 
             }
-        });
+        });*/
 
         return view;
 
+    }
+
+    private void fetchLocation() {
+
+
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Permission is not granted
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Required Location Permission")
+                        .setMessage("You have to give this permission to acess this feature")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                ActivityCompat.requestPermissions(getActivity(),
+                                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                // No explanation needed; request the permission
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+
+            }
+        }else {
+            // Permission has already been granted
+            mFusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            // Got last known location. In some rare situations this can be null.
+                            if (location != null) {
+                                // Logic to handle location object
+                                Double latittude = location.getLatitude();
+                                Double longitude = location.getLongitude();
+
+                                user_location.setText("Latitude = "+latittude + "\nLongitude = " + longitude);
+
+                                for(int i=0;i<addPhonenumArrayList.size();i++) {
+
+                                    String phoneNumber = addPhonenumArrayList.get(i).getS_phonenum();
+                                    String message = "Latitude = " + latittude + " Longitude = " + longitude;
+                                    MyLog.e(TAG,"msg>>"+message+"\n>>phone>>"+phoneNumber);
+                                    if (message != null && phoneNumber != null) {
+                                        SmsManager smsManager = SmsManager.getDefault();
+                                        smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+                                        Toast.makeText(getActivity(), "SMS send successfully", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getActivity(), "Enter the phone Number", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            }
+                        }
+                    });
+
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                //abc
+
+            }else{
+
+            }
+        }
     }
 }

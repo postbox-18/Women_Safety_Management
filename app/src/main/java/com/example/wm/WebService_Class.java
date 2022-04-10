@@ -14,6 +14,7 @@ public class WebService_Class {
     public WebService_Class(Context context) {
         sharedPreferences = context.getSharedPreferences("Web_Config", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
+
     }
     public void setName(String name){
         sharedPreferences.edit().putString(Name, name).commit();
@@ -21,6 +22,7 @@ public class WebService_Class {
     }
     public String getName()
     {
+
         return sharedPreferences.getString(Name, null);
     }
     
@@ -31,6 +33,7 @@ public class WebService_Class {
     }
     public static String getPin()
     {
+        editor.apply();
         return sharedPreferences.getString(Pin, null);
     }
     

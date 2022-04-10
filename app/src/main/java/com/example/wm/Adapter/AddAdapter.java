@@ -1,36 +1,28 @@
 package com.example.wm.Adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wm.Class.AddPhonenum;
-import com.example.wm.Class.MyLog;
 import com.example.wm.R;
 
-import org.w3c.dom.Text;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
 
 
-    public final ArrayList<AddPhonenum> AddAdapters;
+    public final List<AddPhonenum> AddAdapters;
     private  String finalTotal;
     Context context;
-    public AddAdapter(Context mcontext, ArrayList<AddPhonenum> AddAdapters) {
+    public AddAdapter(Context mcontext, List<AddPhonenum> AddAdapters) {
         this.AddAdapters = AddAdapters;
         this.context=mcontext;
 
@@ -83,7 +75,13 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return AddAdapters.size();
+        if(AddAdapters.size()>0) {
+            return AddAdapters.size();
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
