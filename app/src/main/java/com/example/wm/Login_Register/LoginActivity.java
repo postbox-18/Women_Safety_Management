@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.alimuzaffar.lib.pin.PinEntryEditText;
@@ -14,6 +15,7 @@ import com.example.wm.WebService_Class;
 
 public class LoginActivity extends AppCompatActivity {
     private PinEntryEditText pinEntry;
+    private CheckBox remember_me;
 
     private String login_pin,pin,TAG="LoginActivity";
     @Override
@@ -21,9 +23,19 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         pinEntry = (PinEntryEditText) findViewById(R.id.login_pin);
+       // remember_me = (CheckBox) findViewById(R.id.remember_mes);
         pin=new WebService_Class(LoginActivity.this).getPin();
 
-
+        /*if(remember_me.isChecked())
+        {
+            if(!pin.isEmpty()) {
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            }
+            Toast.makeText(this, "pin is empty", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            WebService_Class.logout_User();
+        }*/
         if (pinEntry != null) {
             pinEntry.setOnPinEnteredListener(new PinEntryEditText.OnPinEnteredListener() {
                 @Override
@@ -35,10 +47,9 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getActivity(), "FAIL", Toast.LENGTH_SHORT).show();
                         pinEntry.setText(null);
                     }*/
-                    login_pin=pinEntry.getText().toString();
-                    MyLog.e(TAG,"pin>>"+login_pin+"=="+pin);
-                    if(pin.equals(login_pin))
-                    {
+                    login_pin = pinEntry.getText().toString();
+                    MyLog.e(TAG, "pin>>" + login_pin + "==" + pin);
+                    if (pin.equals(login_pin)) {
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         Toast.makeText(LoginActivity.this, "SUCCESS", Toast.LENGTH_SHORT).show();
                     } else {

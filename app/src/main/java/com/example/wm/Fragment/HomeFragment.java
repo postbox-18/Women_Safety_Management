@@ -115,22 +115,41 @@ public class HomeFragment extends BaseFragment {
 
         //Post post = gson.fromJson(reader, Post.class);
         //AddPhonenum addPhonenumArray = gson.fromJson(json, AddPhonenum.class);
+        addPhonenumArrayList=new ArrayList<>();
         addPhonenumArrayList=gson.fromJson(json, type);
     // MyLog.d(TAG,"ClickeTest:updatedMedicine frag:"+new GsonBuilder().setPrettyPrinting().create().toJson(updatedMedicine));
         //MyLog.e(TAG,"list>>home>>"+addPhonenumArrayList.size()+">>"+new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
         /* id_tick = view.findViewById(R.id.id_tick);*/
-        if(addPhonenumArrayList.size()>0 || addPhonenumArrayList!=null) {
+        if(addPhonenumArrayList.get(0).getS_phonenum()==null) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Message");
+            builder.setMessage("Unable to get Details, do you want to retry?");
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //load_SearchFragment();
+                    dialog.dismiss();
+                }
+            });
+
+
+            builder.create().show();
+
+
+            Toast.makeText(getContext(), "empty", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
             recyclerview_details = view.findViewById(R.id.recyclerview_add_num);
             recyclerview_details.setHasFixedSize(true);
             recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerview_details.setNestedScrollingEnabled(false);
             addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList);
             recyclerview_details.setAdapter(addAdapter);
+
         }
-        else
-        {
-            Toast.makeText(getContext(), "empty", Toast.LENGTH_SHORT).show();
-        }
+
 
 
         user_location = view.findViewById(R.id.user_location);
@@ -164,7 +183,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 fetchLocation();
-                Toast.makeText(getActivity(), "SENDING MESSAGE", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "SENDING MESSAGE", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -211,7 +230,7 @@ public class HomeFragment extends BaseFragment {
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-
+            MyLog.e(TAG,"msg>>permission is not granted");
             // Permission is not granted
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
@@ -219,7 +238,7 @@ public class HomeFragment extends BaseFragment {
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
-
+                MyLog.e(TAG,"msg>>please grant permission");
                 new AlertDialog.Builder(getActivity())
                         .setTitle("Required Location Permission")
                         .setMessage("You have to give this permission to acess this feature")
@@ -243,6 +262,7 @@ public class HomeFragment extends BaseFragment {
 
             } else {
                 // No explanation needed; request the permission
+                MyLog.e(TAG,"msg>>request the permission");
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                         MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION);
@@ -254,12 +274,14 @@ public class HomeFragment extends BaseFragment {
             }
         }else {
             // Permission has already been granted
+            MyLog.e(TAG,"msg>>permission has already granted");
             mFusedLocationClient.getLastLocation()
                     .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
                             // Got last known location. In some rare situations this can be null.
                             if (location != null) {
+                                MyLog.e(TAG,"msg>>location");
                                 // Logic to handle location object
                                 Double latittude = location.getLatitude();
                                 Double longitude = location.getLongitude();
@@ -280,6 +302,10 @@ public class HomeFragment extends BaseFragment {
                                     }
                                 }
 
+                            }
+                            else
+                            {
+                                MyLog.e(TAG,"msg>>location is "+location);
                             }
                         }
                     });

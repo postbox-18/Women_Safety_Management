@@ -50,14 +50,13 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
         holder.im_Remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-/*
-                onItemDeleted.onItemDelete(AddAdapterss.get(position).getS_iDrug_Brand_id());
-                AddAdapterss.remove(position);
+                //onItemDeleted.onItemDelete(AddAdapters.get(position).getS_phonenum());
+                AddAdapters.remove(position);
                 notifyDataSetChanged();
-                meds_totalItemCount.get_TotalItemCount(String.valueOf(AddAdapterss.size()));
-                if(AddAdapterss.size()==0)
+                //meds_totalItemCount.get_TotalItemCount(String.valueOf(AddAdapters.size()));
+              /*  if(AddAdapters.size()==0)
                 {
-                    tv_TotalRateSum.setText("0.00");
+                    //tv_TotalRateSum.setText("0.00");
                 }*/
 
             }

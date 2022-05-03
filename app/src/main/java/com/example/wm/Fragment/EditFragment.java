@@ -148,7 +148,9 @@ public class EditFragment extends Fragment {
         }
         else {
             hideKeyboard(add);
-            addPhonenumArrayList=new ArrayList<>();
+            if(addPhonenumArrayList.size()==0) {
+                addPhonenumArrayList = new ArrayList<>();
+            }
             Date currentTime = Calendar.getInstance().getTime();
             AddPhonenum addPhonenum=new AddPhonenum(
                     s_name,

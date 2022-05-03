@@ -16,6 +16,16 @@ public class WebService_Class {
         editor = sharedPreferences.edit();
 
     }
+    public static boolean logout_User() {
+        if (editor != null) {
+            editor.remove("Pin");
+            editor.apply();
+            return true;
+        } else {
+            return false;
+        }
+
+    }
     public void setName(String name){
         sharedPreferences.edit().putString(Name, name).commit();
       
