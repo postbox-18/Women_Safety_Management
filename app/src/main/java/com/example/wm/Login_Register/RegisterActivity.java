@@ -100,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
             new WebService_Class(RegisterActivity.this).setName(s_name);
             new WebService_Class(RegisterActivity.this).setPhonenum(s_phonenum);
             Toast.makeText(this, "Successfully Register", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             /*showSucessDialog("Successfully Register !", new DoneClickListener() {
                 @Override
                 public void onDoneClick() {

@@ -8,8 +8,10 @@ public class WebService_Class {
     private static SharedPreferences.Editor editor;
     protected final String Name = "Name";
     protected static final String Pin = "Pin";
+    protected static final String etrPin = "etrPin";
     protected final String Phonenum = "Phonenum";
     protected final String Arraylist = "Arraylist";
+    protected final String CheckedBox = "CheckedBox";
 
     public WebService_Class(Context context) {
         sharedPreferences = context.getSharedPreferences("Web_Config", Context.MODE_PRIVATE);
@@ -18,13 +20,17 @@ public class WebService_Class {
     }
     public static boolean logout_User() {
         if (editor != null) {
-            editor.remove("Pin");
+            editor.remove("etrPin");
             editor.apply();
             return true;
         } else {
             return false;
         }
-
+    }
+    public static Boolean insert_UserName(String etrPin) {
+        editor.putString("etrPin", etrPin);
+        editor.apply();
+        return true;
     }
     public void setName(String name){
         sharedPreferences.edit().putString(Name, name).commit();
@@ -66,6 +72,27 @@ public class WebService_Class {
         return sharedPreferences.getString(Arraylist, null);
     }
 
-    
+    public void setEtrPin(String etrpin){
+        sharedPreferences.edit().putString(etrPin, etrpin).commit();
+
+    }
+    public String getEtrPin()
+    {
+        return sharedPreferences.getString(etrPin, null);
+    }
+
+
+
+    public void setCheckedBox(String checkedBox){
+        sharedPreferences.edit().putString(CheckedBox, checkedBox).commit();
+
+    }
+    public String getCheckedBox()
+    {
+        return sharedPreferences.getString(CheckedBox, null);
+    }
+
+
+
     
 }

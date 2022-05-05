@@ -1,3 +1,4 @@
+/*
 package com.example.wm.Fragment;
 
 import android.content.Intent;
@@ -141,8 +142,10 @@ public class RegisterFragment extends BaseFragment {
             showSucessDialog("Successfully Register !", new DoneClickListener() {
                 @Override
                 public void onDoneClick() {
-                   /* Intent intent=new Intent(getActivity(),HomeFragment.class);
-                    startActivity(intent);*/
+                   */
+/* Intent intent=new Intent(getActivity(),HomeFragment.class);
+                    startActivity(intent);*//*
+
                     startActivity(new Intent(getActivity(), HomeFragment.class));
                 }
             });
@@ -214,4 +217,4 @@ public class RegisterFragment extends BaseFragment {
             }
         });
     }
-}
+}*/

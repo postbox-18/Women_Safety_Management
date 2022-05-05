@@ -1,14 +1,22 @@
 package com.example.wm.Fragment;
 
+import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.wm.Class.MyLog;
+import com.example.wm.Login_Register.LoginActivity;
 import com.example.wm.R;
+import com.example.wm.WebService_Class;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,19 +34,13 @@ public class SettingsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private TextView user_name,phone_number,change_pin;
+    private String tuser_name,tphone_number,tchange_pin,TAG="SettingsFragment";
+    private AppCompatButton logout;
     public SettingsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SettingsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static SettingsFragment newInstance(String param1, String param2) {
         SettingsFragment fragment = new SettingsFragment();
         Bundle args = new Bundle();
@@ -61,6 +63,29 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        View view= inflater.inflate(R.layout.fragment_settings, container, false);
+        user_name=view.findViewById(R.id.user_name);
+        phone_number=view.findViewById(R.id.phone_number);
+        change_pin=view.findViewById(R.id.change_pin);
+        logout=view.findViewById(R.id.log_out);
+
+        tuser_name=new WebService_Class(getContext()).getName();
+        tphone_number=new WebService_Class(getContext()).getPhonenum();
+        user_name.setText(tuser_name);
+        phone_number.setText(tphone_number);
+        //click on next page
+        tchange_pin=new WebService_Class(getContext()).getPin();
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyLog.e(TAG,"logout>>btn clicked");
+                WebService_Class.logout_User();
+                Intent intent=new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        return view;
     }
+
+
 }

@@ -105,7 +105,7 @@ public class EditFragment extends Fragment {
         //Post post = gson.fromJson(reader, Post.class);
         //AddPhonenum addPhonenumArray = gson.fromJson(json, AddPhonenum.class);
         data_set=gson.fromJson(json, type);
-        MyLog.e(TAG, "Recyclerview>>edit begin data_set>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(data_set));
+        //MyLog.e(TAG, "Recyclerview>>edit begin data_set>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(data_set));
         recyclerView=view.findViewById(R.id.recyclerview_add_num);
         MyApplication.getMainThreadHandler().post(new Runnable() {
             @Override
@@ -166,7 +166,7 @@ public class EditFragment extends Fragment {
             // below line is to save data in shared
             // prefs in the form of string.
             new WebService_Class(getContext()).setArraylist(json);
-            MyLog.e(TAG, "Recyclerview>>edit after adding>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
+            //MyLog.e(TAG, "Recyclerview>>edit after adding>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
           /*  for(int i=0;i<addPhonenumArrayList.size();i++)
             {
 

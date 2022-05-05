@@ -1,3 +1,4 @@
+/*
 package com.example.wm.Fragment;
 
 import android.content.Intent;
@@ -62,12 +63,14 @@ public class LoginFragment extends BaseFragment {
                 @Override
                 public void onPinEntered(CharSequence str) {
 
-                   /* if (str.toString().equals("1234")) {
+                   */
+/* if (str.toString().equals("1234")) {
                         Toast.makeText(getActivity(), "SUCCESS", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getActivity(), "FAIL", Toast.LENGTH_SHORT).show();
                         pinEntry.setText(null);
-                    }*/
+                    }*//*
+
                     login_pin=pinEntry.getText().toString();
                    // MyLog.e(TAG,"pin>>"+login_pin+"=="+pin);
                     if(!pin.equals(login_pin))
@@ -88,4 +91,4 @@ public class LoginFragment extends BaseFragment {
         }
         return view;
     }
-}
+}*/

@@ -35,10 +35,12 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new HomeFragment();
                     Tag="HomeFragment";
                 } else if (itemId == R.id.Settings) {
-//                    fragment = getMyPatientFragment();
                         fragment = new SettingsFragment();
                         Tag="SettingsFragment";
-
+                }
+                else {
+                    fragment = new HomeFragment();
+                    Tag="HomeFragment";
                 }
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.Fragment, fragment, Tag);

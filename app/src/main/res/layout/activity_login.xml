@@ -52,6 +52,7 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="3dp"
         app:contentPadding="5dp"
+        app:layout_constraintBottom_toTopOf="@id/check_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/head">
@@ -70,5 +71,23 @@
                 />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
+    <androidx.cardview.widget.CardView
+        android:id="@+id/check_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="3dp"
+        app:contentPadding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_ct">
+<CheckBox
+    android:id="@+id/remember_me"
+    android:layout_width="wrap_content"
+    android:text="Remember me"
+    android:layout_height="wrap_content"/>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

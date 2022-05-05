@@ -123,7 +123,7 @@ public class HomeFragment extends BaseFragment {
             public void run() {
 
                 addPhonenumArrayList=gson.fromJson(json, type);
-                MyLog.e(TAG, "Recyclerview>>home begin>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
+                //MyLog.e(TAG, "Recyclerview>>home begin>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
                 recyclerview_details.setHasFixedSize(true);
                 recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
                 recyclerview_details.setNestedScrollingEnabled(false);
