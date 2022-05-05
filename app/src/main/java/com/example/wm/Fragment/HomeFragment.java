@@ -129,6 +129,7 @@ public class HomeFragment extends BaseFragment {
                 recyclerview_details.setNestedScrollingEnabled(false);
                 addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList);
                 recyclerview_details.setAdapter(addAdapter);
+                addAdapter.notifyDataSetChanged();
 
 
             }

@@ -115,6 +115,7 @@ public class EditFragment extends Fragment {
                 recyclerView.setNestedScrollingEnabled(false);
                 addAdapter = new AddAdapter(getActivity(), data_set);
                 recyclerView.setAdapter(addAdapter);
+                addAdapter.notifyDataSetChanged();
 
 
             }
@@ -158,10 +159,11 @@ public class EditFragment extends Fragment {
                     s_phonenum
 
             );
-            addPhonenumArrayList.add(addPhonenum);
+            //addPhonenumArrayList.add(addPhonenum);
+            data_set.add(addPhonenum);
             Gson gson = new Gson();
             // getting data from gson and storing it in a string.
-            String json = gson.toJson(addPhonenumArrayList);
+            String json = gson.toJson(data_set);
 
             // below line is to save data in shared
             // prefs in the form of string.
@@ -174,11 +176,13 @@ public class EditFragment extends Fragment {
             MyApplication.getMainThreadHandler().post(new Runnable() {
                 @Override
                 public void run() {
+
                     recyclerView.setHasFixedSize(true);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                     recyclerView.setNestedScrollingEnabled(false);
-                    addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList);
+                    addAdapter = new AddAdapter(getActivity(), data_set);
                     recyclerView.setAdapter(addAdapter);
+                    addAdapter.notifyDataSetChanged();
 
 
                 }

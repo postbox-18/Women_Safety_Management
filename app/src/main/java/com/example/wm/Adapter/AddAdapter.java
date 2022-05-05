@@ -12,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wm.Class.AddPhonenum;
+import com.example.wm.Class.MyLog;
 import com.example.wm.R;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +22,11 @@ import java.util.List;
 public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
 
 
-    public List<AddPhonenum> AddAdapters;
-    private  String finalTotal;
+    public List<AddPhonenum> addPhonenumArrayList;
+    private  String finalTotal,TAG="AddAdapter";
     Context context;
     public AddAdapter(Context mcontext, List<AddPhonenum> AddAdapters) {
-        this.AddAdapters = AddAdapters;
+        this.addPhonenumArrayList = AddAdapters;
         this.context=mcontext;
 
     }
@@ -39,7 +41,7 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AddAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        final AddPhonenum addPhonenum = AddAdapters.get(position);
+        final AddPhonenum addPhonenum = addPhonenumArrayList.get(position);
 
         holder.num.setText(addPhonenum.getS_phonenum());
         holder.name.setText(addPhonenum.getS_name());
@@ -52,8 +54,10 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 //onItemDeleted.onItemDelete(AddAdapters.get(position).getS_phonenum());
-                AddAdapters.remove(position);
+                MyLog.e(TAG, "Recyclerview>>home begin>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
+                addPhonenumArrayList.remove(position);
                 notifyDataSetChanged();
+                MyLog.e(TAG, "Recyclerview>>home after>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
                 //meds_totalItemCount.get_TotalItemCount(String.valueOf(AddAdapters.size()));
               /*  if(AddAdapters.size()==0)
                 {
@@ -69,13 +73,14 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
             }
 
         });
-
+        notifyDataSetChanged();
+        MyLog.e(TAG, "Recyclerview>>home>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
        // total count.get_TotalItemCount(String.valueOf(addAdapters.size()));
     }
 
     @Override
     public int getItemCount() {
-        return AddAdapters != null ? AddAdapters.size() : 0;
+        return addPhonenumArrayList != null ? addPhonenumArrayList.size() : 0;
 
     }
 
@@ -100,10 +105,5 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
         }
     }
 
-    public interface OnItemDeleted
-    {
-        void onItemDelete(String DrugBrandID);
-
-    }
 
 }
