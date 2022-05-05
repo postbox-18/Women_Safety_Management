@@ -59,7 +59,7 @@ public class HomeFragment extends BaseFragment {
     private AddAdapter addAdapter;
     private FusedLocationProviderClient mFusedLocationClient;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
-    private List<AddPhonenum> addPhonenumArrayList=new ArrayList<>();
+    private List<AddPhonenum> addPhonenumArrayList;
     private TextView user_location;
 
     // TODO: Rename and change types of parameters
@@ -112,15 +112,28 @@ public class HomeFragment extends BaseFragment {
         String json=new WebService_Class(getActivity()).getArraylist();
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<AddPhonenum>>() {}.getType();
-
+        recyclerview_details = view.findViewById(R.id.recyclerview_add_num);
         //Post post = gson.fromJson(reader, Post.class);
         //AddPhonenum addPhonenumArray = gson.fromJson(json, AddPhonenum.class);
-        addPhonenumArrayList=new ArrayList<>();
-        addPhonenumArrayList=gson.fromJson(json, type);
     // MyLog.d(TAG,"ClickeTest:updatedMedicine frag:"+new GsonBuilder().setPrettyPrinting().create().toJson(updatedMedicine));
         //MyLog.e(TAG,"list>>home>>"+addPhonenumArrayList.size()+">>"+new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
         /* id_tick = view.findViewById(R.id.id_tick);*/
-        if(addPhonenumArrayList.get(0).getS_phonenum()==null) {
+        MyApplication.getMainThreadHandler().post(new Runnable() {
+            @Override
+            public void run() {
+
+                addPhonenumArrayList=gson.fromJson(json, type);
+                MyLog.e(TAG, "Recyclerview>>home begin>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
+                recyclerview_details.setHasFixedSize(true);
+                recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
+                recyclerview_details.setNestedScrollingEnabled(false);
+                addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList);
+                recyclerview_details.setAdapter(addAdapter);
+
+
+            }
+        });
+        /*if(addPhonenumArrayList.get(0).getS_phonenum()==null) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle("Message");
@@ -148,7 +161,7 @@ public class HomeFragment extends BaseFragment {
             addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList);
             recyclerview_details.setAdapter(addAdapter);
 
-        }
+        }*/
 
 
 
@@ -291,7 +304,8 @@ public class HomeFragment extends BaseFragment {
                                 for(int i=0;i<addPhonenumArrayList.size();i++) {
 
                                     String phoneNumber = addPhonenumArrayList.get(i).getS_phonenum();
-                                    String message = "Latitude = " + latittude + " Longitude = " + longitude;
+                                    //String message = "Latitude = " + latittude + " Longitude = " + longitude;
+                                    String message = "http://maps.google.com/maps?daddr=" +latittude+ "," + longitude;
                                     MyLog.e(TAG,"msg>>"+message+"\n>>phone>>"+phoneNumber);
                                     if (message != null && phoneNumber != null) {
                                         SmsManager smsManager = SmsManager.getDefault();

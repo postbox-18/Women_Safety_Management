@@ -1,5 +1,6 @@
 package com.example.wm.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,7 @@ import java.util.List;
 public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
 
 
-    public final List<AddPhonenum> AddAdapters;
+    public List<AddPhonenum> AddAdapters;
     private  String finalTotal;
     Context context;
     public AddAdapter(Context mcontext, List<AddPhonenum> AddAdapters) {
@@ -37,7 +38,7 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AddAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull AddAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         final AddPhonenum addPhonenum = AddAdapters.get(position);
 
         holder.num.setText(addPhonenum.getS_phonenum());
@@ -74,13 +75,8 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        if(AddAdapters.size()>0) {
-            return AddAdapters.size();
-        }
-        else
-        {
-            return 0;
-        }
+        return AddAdapters != null ? AddAdapters.size() : 0;
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
