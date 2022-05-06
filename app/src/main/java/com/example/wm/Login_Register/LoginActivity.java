@@ -30,15 +30,14 @@ public class LoginActivity extends AppCompatActivity {
         //////////***********/////////
 
         CheckedBox=new WebService_Class(LoginActivity.this).getCheckedBox();
-        if(CheckedBox.equals("true"))
-        {
-            MyLog.e(TAG,"logout>>Check condition>>"+CheckedBox);
-            login();
-        }
-        else if(CheckedBox.equals("false"))
-        {
-            MyLog.e(TAG,"logout>>Check is condition>>"+CheckedBox);
-            WebService_Class.logout_User();
+        if(CheckedBox!=null) {
+            if (CheckedBox.equals("true")) {
+                MyLog.e(TAG, "logout>>Check condition>>" + CheckedBox);
+                login();
+            } else if (CheckedBox.equals("false")) {
+                MyLog.e(TAG, "logout>>Check is condition>>" + CheckedBox);
+                WebService_Class.logout_User();
+            }
         }
         ///////////////************///////////
         /*if(remember_me.isChecked())

@@ -25,7 +25,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.wm.Adapter.AddAdapter;
 import com.example.wm.Class.AddPhonenum;
 import com.example.wm.Class.MyLog;
@@ -61,7 +60,15 @@ public class HomeFragment extends BaseFragment {
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
     private List<AddPhonenum> addPhonenumArrayList;
     private TextView user_location;
+    private AddAdapter.RemovePosition AddListener=new AddAdapter.RemovePosition() {
 
+        @Override
+        public void getPosition(int groupPositionParent) {
+            addPhonenumArrayList.remove(groupPositionParent);
+            addAdapter.notifyDataSetChanged();
+            MyLog.e(TAG, "Recyclerview>>Edit after>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
+        }
+    };
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -127,7 +134,7 @@ public class HomeFragment extends BaseFragment {
                 recyclerview_details.setHasFixedSize(true);
                 recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
                 recyclerview_details.setNestedScrollingEnabled(false);
-                addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList);
+                addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList, AddListener);
                 recyclerview_details.setAdapter(addAdapter);
                 addAdapter.notifyDataSetChanged();
 

@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.wm.Adapter.AddAdapter;
 import com.example.wm.Class.AddPhonenum;
@@ -51,10 +50,20 @@ public class EditFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private AddAdapter addAdapter;
     private List<AddPhonenum> addPhonenumArrayList=new ArrayList<>();
-    private List<AddPhonenum> data_set=new ArrayList<>();
-    private RecyclerView recyclerView;
+    private List<AddPhonenum> data_set;
+    private RecyclerView recyclerView,recyclerview_add_num_new;
     private String mParam1;
     private String mParam2;
+    private AddAdapter.RemovePosition AddListener=new AddAdapter.RemovePosition() {
+
+        @Override
+        public void getPosition(int groupPositionParent) {
+            data_set.remove(groupPositionParent);
+            addAdapter.notifyDataSetChanged();
+            MyLog.e(TAG, "Recyclerview>>Edit after>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(data_set));
+        }
+    };
+
 
     public EditFragment() {
         // Required empty public constructor
@@ -96,7 +105,6 @@ public class EditFragment extends Fragment {
         addTextChanger(phonenum,phonenum_layout);
         setOnFoucsChangeLister(phonenum,phonenum_layout);
 
-        data_set =new ArrayList<>();
         addPhonenumArrayList =new ArrayList<>();
         String json=new WebService_Class(getActivity()).getArraylist();
         Gson gson = new Gson();
@@ -107,13 +115,14 @@ public class EditFragment extends Fragment {
         data_set=gson.fromJson(json, type);
         //MyLog.e(TAG, "Recyclerview>>edit begin data_set>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(data_set));
         recyclerView=view.findViewById(R.id.recyclerview_add_num);
+        recyclerview_add_num_new=view.findViewById(R.id.recyclerview_add_num_new);
         MyApplication.getMainThreadHandler().post(new Runnable() {
             @Override
             public void run() {
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 recyclerView.setNestedScrollingEnabled(false);
-                addAdapter = new AddAdapter(getActivity(), data_set);
+                addAdapter = new AddAdapter(getActivity(), data_set,AddListener);
                 recyclerView.setAdapter(addAdapter);
                 addAdapter.notifyDataSetChanged();
 
@@ -159,29 +168,21 @@ public class EditFragment extends Fragment {
                     s_phonenum
 
             );
-            //addPhonenumArrayList.add(addPhonenum);
-            data_set.add(addPhonenum);
+            addPhonenumArrayList.add(addPhonenum);
+            data_set.addAll(addPhonenumArrayList);
             Gson gson = new Gson();
-            // getting data from gson and storing it in a string.
             String json = gson.toJson(data_set);
-
-            // below line is to save data in shared
-            // prefs in the form of string.
             new WebService_Class(getContext()).setArraylist(json);
-            //MyLog.e(TAG, "Recyclerview>>edit after adding>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
-          /*  for(int i=0;i<addPhonenumArrayList.size();i++)
-            {
 
-            }*/
             MyApplication.getMainThreadHandler().post(new Runnable() {
                 @Override
                 public void run() {
 
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                    recyclerView.setNestedScrollingEnabled(false);
-                    addAdapter = new AddAdapter(getActivity(), data_set);
-                    recyclerView.setAdapter(addAdapter);
+                    recyclerview_add_num_new.setHasFixedSize(true);
+                    recyclerview_add_num_new.setLayoutManager(new LinearLayoutManager(getContext()));
+                    recyclerview_add_num_new.setNestedScrollingEnabled(false);
+                    addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList, AddListener);
+                    recyclerview_add_num_new.setAdapter(addAdapter);
                     addAdapter.notifyDataSetChanged();
 
 
@@ -249,7 +250,7 @@ public class EditFragment extends Fragment {
         editext.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
-                if (hasFocus ) {
+                if (hasFocus) {
                     // Toast.makeText(RegisterActivity.this, "Got the focus", Toast.LENGTH_LONG).show();
                     textInputLayout.setBoxBackgroundColor(Color.WHITE);
                 } else {
@@ -260,4 +261,6 @@ public class EditFragment extends Fragment {
             }
         });
     }
+
+
 }

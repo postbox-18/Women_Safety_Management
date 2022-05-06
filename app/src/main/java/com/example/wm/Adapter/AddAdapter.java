@@ -16,7 +16,6 @@ import com.example.wm.Class.MyLog;
 import com.example.wm.R;
 import com.google.gson.GsonBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
@@ -25,9 +24,15 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
     public List<AddPhonenum> addPhonenumArrayList;
     private  String finalTotal,TAG="AddAdapter";
     Context context;
-    public AddAdapter(Context mcontext, List<AddPhonenum> AddAdapters) {
+    AddAdapter.RemovePosition removePosition;
+    public interface RemovePosition
+    {
+        void getPosition(int i);
+    }
+    public AddAdapter(Context mcontext, List<AddPhonenum> AddAdapters, RemovePosition addListener) {
         this.addPhonenumArrayList = AddAdapters;
         this.context=mcontext;
+        this.removePosition=addListener;
 
     }
 
@@ -53,12 +58,13 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
         holder.im_Remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                removePosition.getPosition(position);
                 //onItemDeleted.onItemDelete(AddAdapters.get(position).getS_phonenum());
                 MyLog.e(TAG, "Recyclerview>>home begin>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
-                addPhonenumArrayList.remove(position);
+               /* addPhonenumArrayList.remove(position);
                 notifyDataSetChanged();
-                MyLog.e(TAG, "Recyclerview>>home after>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
-                //meds_totalItemCount.get_TotalItemCount(String.valueOf(AddAdapters.size()));
+                MyLog.e(TAG, "Recyclerview>>home after>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));*/
+                //meds_totalItemCount.get_TotalItemCount(String.valueOf(AddAdapters.size()k));
               /*  if(AddAdapters.size()==0)
                 {
                     //tv_TotalRateSum.setText("0.00");
@@ -73,8 +79,7 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
             }
 
         });
-        notifyDataSetChanged();
-        MyLog.e(TAG, "Recyclerview>>home>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
+        //MyLog.e(TAG, "Recyclerview>>home>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
        // total count.get_TotalItemCount(String.valueOf(addAdapters.size()));
     }
 
