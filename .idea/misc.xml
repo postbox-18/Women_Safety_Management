@@ -34,6 +34,8 @@
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/splashscreen.xml" value="0.25" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/success_layout.xml" value="0.25" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/register_btn.xml" value="0.2015" />
+        <entry key="app/src/main/res/drawable/signin_background.xml" value="0.2015" />
         <entry key="app/src/main/res/layout-sw600dp/splashscreen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19375" />
@@ -41,6 +43,7 @@
         <entry key="app/src/main/res/layout/bottom_view.xml" value="1.25" />
         <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/splashscreen.xml" value="0.1" />
       </map>
     </option>
   </component>
