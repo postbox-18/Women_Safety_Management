@@ -1,49 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@color/light_red_pink"
     tools:context=".Login_Register.LoginActivity">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/head"
-        android:layout_width="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/name_ct"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/signin_background"
         android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/name_ct"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_height="wrap_content">
+        app:layout_constraintVertical_weight="0.5">
+
         <TextView
             android:id="@+id/heads"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="LOGIN"
-            android:textStyle="bold|italic"
-            android:textSize="22dp"
-            android:textColor="@color/red_pink"
+            android:text=""
             android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="22dp"
+            android:textStyle="bold|italic"
             app:layout_constraintBottom_toTopOf="@id/about"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/left_guide"
+            app:layout_constraintEnd_toEndOf="@id/right_guide"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/about"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Login into your device"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textColor="@color/red_pink"
-            android:textStyle="italic"
+            android:text=""
+            android:textColor="@color/white"
             android:textSize="18dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="@id/left_guide"
+            app:layout_constraintEnd_toEndOf="@id/right_guide"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heads" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_guide"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="55dp" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_guide"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="55dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout
+    android:id="@+id/name_ct"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toTopOf="@id/check_card"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/head"
+    app:layout_constraintVertical_weight="1.5"
+    android:orientation="vertical">
     <androidx.cardview.widget.CardView
-        android:id="@+id/name_ct"
+        android:id="@+id/login_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -52,42 +81,55 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="3dp"
         app:contentPadding="5dp"
-        app:layout_constraintBottom_toTopOf="@id/check_card"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/head">
+     >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="vertical">
+
             <com.alimuzaffar.lib.pin.PinEntryEditText
+                android:id="@+id/login_pin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/purple"
                 android:inputType="number"
-                android:maxLength="4"
-                android:id="@+id/login_pin"
-                />
+                android:maxLength="4" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
+</LinearLayout>
+    <LinearLayout
         android:id="@+id/check_card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_ct"
+        app:layout_constraintVertical_weight="1.5"
+        android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/checkbox_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:layout_gravity="center"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="3dp"
         app:contentPadding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name_ct">
-<CheckBox
-    android:id="@+id/remember_me"
-    android:layout_width="wrap_content"
-    android:text="Remember me"
-    android:layout_height="wrap_content"/>
+      >
+
+        <CheckBox
+            android:id="@+id/remember_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple"
+            android:buttonTint="@color/dark_pink"
+            android:text="Remember me" />
     </androidx.cardview.widget.CardView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
