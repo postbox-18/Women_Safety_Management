@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login_Register.RegisterActivity">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/head"
         android:layout_width="match_parent"
@@ -23,7 +22,7 @@
             android:id="@+id/heads"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="SIGN UP"
+            android:text=""
             android:textAlignment="textStart"
             android:textColor="@color/white"
             android:textSize="22dp"
@@ -37,7 +36,7 @@
             android:id="@+id/about"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Sign up here to get the most out of device"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="18dp"
             android:textStyle="italic"
@@ -63,13 +62,14 @@
     <LinearLayout
         android:id="@+id/name_ct"
         android:layout_width="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/registerbtn"
+        app:layout_constraintBottom_toTopOf="@id/registerbtn_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/head"
         app:layout_constraintVertical_weight="1.5"
         android:layout_height="0dp">
         <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="15dp"
@@ -133,19 +133,26 @@
 
         </LinearLayout>
     </LinearLayout>
-
+<LinearLayout
+    android:id="@+id/registerbtn_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_margin="20dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/name_ct"
+    android:orientation="vertical">
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/registerbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="5dp"
         android:background="@drawable/register_btn"
         android:text="Register"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name_ct" />
+       />
+</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

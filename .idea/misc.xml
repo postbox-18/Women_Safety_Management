@@ -45,6 +45,7 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.12" />
         <entry key="app/src/main/res/layout/bottom_view.xml" value="1.25" />
         <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_register_activitys.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/splashscreen.xml" value="0.1" />
       </map>
