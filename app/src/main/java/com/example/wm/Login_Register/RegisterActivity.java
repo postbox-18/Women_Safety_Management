@@ -26,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
     private AutoCompleteTextView pin,cpin,phonenum;
     private String  s_name,s_phonenum,s_pin,s_cpin,TAG="RegisterActivity";
     private AppCompatButton register;
-    private TextInputLayout name_layout,phonenum_layout,pin_layout,cpin_layout;
+    //private TextInputLayout name_layout,phonenum_layout,pin_layout,cpin_layout;
 
 
 
@@ -35,33 +35,33 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         name=findViewById(R.id.name);
-        name_layout=findViewById(R.id.name_layout);
+       /* name_layout=findViewById(R.id.name_layout);
         addTextChanger(name,name_layout);
-        setOnFoucsChangeLister(name,name_layout);
+        setOnFoucsChangeLister(name,name_layout);*/
 
 
 
         phonenum=findViewById(R.id.phonenum);
-        phonenum_layout=findViewById(R.id.phonenum_layout);
+       /* phonenum_layout=findViewById(R.id.phonenum_layout);
         addTextChanger(phonenum,phonenum_layout);
-        setOnFoucsChangeLister(phonenum,phonenum_layout);
+        setOnFoucsChangeLister(phonenum,phonenum_layout);*/
         phonenum.requestFocus();
         phonenum.setThreshold(10);
 
 
         pin=findViewById(R.id.pin);
-        pin_layout=findViewById(R.id.pin_layout);
+        /*pin_layout=findViewById(R.id.pin_layout);
         addTextChanger(pin,pin_layout);
-        setOnFoucsChangeLister(pin,pin_layout);
+        setOnFoucsChangeLister(pin,pin_layout);*/
         pin.requestFocus();
         pin.setThreshold(3);
 
 
 
         cpin=findViewById(R.id.cpin);
-        cpin_layout=findViewById(R.id.cpin_layout);
+       /* cpin_layout=findViewById(R.id.cpin_layout);
         addTextChanger(cpin,cpin_layout);
-        setOnFoucsChangeLister(cpin,cpin_layout);
+        setOnFoucsChangeLister(cpin,cpin_layout);*/
         pin.requestFocus();
         pin.setThreshold(3);
 
