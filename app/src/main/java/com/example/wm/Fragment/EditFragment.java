@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,9 +15,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.wm.Adapter.AddAdapter;
 import com.example.wm.Class.AddPhonenum;
@@ -45,7 +49,6 @@ public class EditFragment extends Fragment {
     private AutoCompleteTextView phonenum;
     private String  s_name,s_phonenum,TAG="EditFragment";
     private AppCompatButton add;
-    private TextInputLayout name_layout,phonenum_layout;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private AddAdapter addAdapter;
@@ -54,6 +57,11 @@ public class EditFragment extends Fragment {
     private RecyclerView recyclerView,recyclerview_add_num_new;
     private String mParam1;
     private String mParam2;
+
+    private TextView heads,about;
+    private ConstraintLayout top_bg;
+    private Animation slide_down_anim,slide_up_anim,fade_in_anim;
+    private LinearLayout name_ct_layout,recyclerview_layout;
     private AddAdapter.RemovePosition AddListener=new AddAdapter.RemovePosition() {
 
         @Override
@@ -94,16 +102,14 @@ public class EditFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_edit, container, false);
         name=view.findViewById(R.id.name);
-        name_layout=view.findViewById(R.id.name_layout);
-        addTextChanger(name,name_layout);
-        setOnFoucsChangeLister(name,name_layout);
 
-
+        heads=view.findViewById(R.id.heads);
+        about=view.findViewById(R.id.about);
+        top_bg=view.findViewById(R.id.head);
+        name_ct_layout=view.findViewById(R.id.name_ct_layout);
+        recyclerview_layout=view.findViewById(R.id.recyclerview_layout);
 
         phonenum=view.findViewById(R.id.num);
-        phonenum_layout=view.findViewById(R.id.phonenum_layout);
-        addTextChanger(phonenum,phonenum_layout);
-        setOnFoucsChangeLister(phonenum,phonenum_layout);
 
         addPhonenumArrayList =new ArrayList<>();
         String json=new WebService_Class(getActivity()).getArraylist();

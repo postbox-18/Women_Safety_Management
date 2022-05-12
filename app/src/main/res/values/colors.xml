@@ -48,5 +48,6 @@
 <color name="text_silver">#7C7C7C</color>
 <color name="sky_blue">#63AAEB</color>
     <color name="skin_color">#FDEAEF</color>
+    <color name="search_white">#faf8f8</color>
 
 </resources>

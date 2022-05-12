@@ -37,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
     private AutoCompleteTextView pin,cpin,phonenum;
     private String  s_name,s_phonenum,s_pin,s_cpin,TAG="RegisterActivity";
     private AppCompatButton register;
+
     private TextView heads,about;
     private ConstraintLayout top_bg;
     private Animation slide_down_anim,slide_up_anim,fade_in_anim;
