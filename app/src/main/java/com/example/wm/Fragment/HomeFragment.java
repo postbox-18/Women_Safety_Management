@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +30,7 @@ import com.example.wm.Adapter.AddAdapter;
 import com.example.wm.Class.AddPhonenum;
 import com.example.wm.Class.MyLog;
 import com.example.wm.R;
+import com.example.wm.ViewModel.MyDataStore;
 import com.example.wm.WebService_Class;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -47,7 +49,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class HomeFragment extends BaseFragment {
-
+private MyDataStore myDataStore;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -101,6 +103,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myDataStore=new ViewModelProvider(getActivity()).get(MyDataStore.class);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -116,9 +119,9 @@ public class HomeFragment extends BaseFragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Web_Config", MODE_PRIVATE);
         String temp_URL = sharedPreferences.getString("Pin", null);
         String pin=new WebService_Class(getActivity()).getPin();
-        String json=new WebService_Class(getActivity()).getArraylist();
+       /* String json=new WebService_Class(getActivity()).getArraylist();
         Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<AddPhonenum>>() {}.getType();
+        Type type = new TypeToken<ArrayList<AddPhonenum>>() {}.getType();*/
         recyclerview_details = view.findViewById(R.id.recyclerview_add_num);
         //Post post = gson.fromJson(reader, Post.class);
         //AddPhonenum addPhonenumArray = gson.fromJson(json, AddPhonenum.class);
@@ -129,8 +132,9 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void run() {
 
-                addPhonenumArrayList=gson.fromJson(json, type);
-                //MyLog.e(TAG, "Recyclerview>>home begin>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
+                //addPhonenumArrayList=gson.fromJson(json, type);
+                addPhonenumArrayList=myDataStore.getAddPhonenumArrayList();
+                MyLog.e(TAG, "Recyclerview>>home begins>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
                 recyclerview_details.setHasFixedSize(true);
                 recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
                 recyclerview_details.setNestedScrollingEnabled(false);

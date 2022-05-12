@@ -34,11 +34,15 @@
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/splashscreen.xml" value="0.25" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/layout/success_layout.xml" value="0.25" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/My Git/WM/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/bottom_sheet_card.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/edittext_box_light_blue.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/edittext_box_white.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/ic_key.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/ic_man_vector__22_.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/ic_phone__1_.xml" value="0.2015" />
+        <entry key="app/src/main/res/drawable/ic_trash_can_regular.xml" value="0.2015" />
+        <entry key="app/src/main/res/drawable/ic_user_solid.xml" value="0.2015" />
+        <entry key="app/src/main/res/drawable/ic_users_solid.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/mytabs.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/register_btn.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/signin_background.xml" value="0.2015" />
@@ -48,7 +52,9 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.12" />
+        <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.22" />
         <entry key="app/src/main/res/layout/bottom_view.xml" value="1.25" />
+        <entry key="app/src/main/res/layout/cardview_addadapter.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_register_activitys.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.19375" />

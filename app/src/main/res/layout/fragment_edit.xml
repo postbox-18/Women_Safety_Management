@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    app:behavior_peekHeight="250dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
     tools:context=".Fragment.EditFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +25,7 @@
             android:id="@+id/head"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="CONTACTS..."
+            android:text=""
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold|italic"
@@ -36,7 +38,7 @@
             android:id="@+id/about"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="please enter name and phone number to send your location."
+            android:text=""
             android:textColor="@color/white"
             android:textSize="18dp"
             android:layout_marginBottom="25dp"
@@ -63,7 +65,7 @@
     android:id="@+id/name_ct_layout"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    app:layout_constraintVertical_weight="1.5"
+    app:layout_constraintVertical_weight="1.75"
     app:layout_constraintTop_toBottomOf="@id/head_layout"
     app:layout_constraintBottom_toTopOf="@id/recyclerview_layout"
     app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +103,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_man_vector__22_"
                     android:drawablePadding="10dp"
+                    android:padding="15dp"
                     android:hint="NAME"
                     android:singleLine="true"
                     android:textColor="@color/purple" />
@@ -130,6 +133,7 @@
     </androidx.cardview.widget.CardView>
     </LinearLayout>
 </LinearLayout>
+
     <LinearLayout
         android:id="@+id/recyclerview_layout"
         android:layout_width="match_parent"
@@ -139,17 +143,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent">
-        <androidx.cardview.widget.CardView
-            android:id="@+id/header2"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:cardElevation="3dp"
-            app:cardCornerRadius="35dp"
-            android:layout_margin="10dp"
-            android:baselineAligned="false">
-        </androidx.cardview.widget.CardView>
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:orientation="vertical">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -173,14 +174,13 @@
             android:textSize="18dp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_add_num_new"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:itemCount="3"
         tools:listitem="@layout/cardview_addadapter" />
-
+        </LinearLayout>
     <!--<androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -15,10 +15,16 @@
 
         <LinearLayout
             android:id="@+id/header_color"
-            android:layout_width="7dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/red_pink"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingStart="5dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_user_solid"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,6 +36,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:orientation="horizontal"
                 >
                 <LinearLayout
@@ -72,22 +79,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     >
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NAME:"
-                        android:textColor="@color/default_grey"
-                        android:textSize="10sp"
-                        />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingStart="3dp"
-                        android:hint="ARAVINTH"
+                        android:text="ARAVINTH"
+                        android:textColor="@color/purple"
                         android:textStyle="bold"
-                        android:textSize="10sp" />
+                        android:textSize="12dp" />
                 </LinearLayout>
 
 
@@ -110,21 +111,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/date_layout">
                     <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:text="Phone No.:"
-                        android:textColor="@color/default_grey"
-                        android:textSize="10sp"
-                        />
-
-                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:paddingStart="3dp"
-                        android:hint="9987456123"
+                        android:text="9987456123"
+                        android:textColor="@color/lavender"
                         android:textStyle="bold"
                         android:textSize="10sp" />
                 </LinearLayout>
@@ -176,6 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:visibility="gone"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintDimensionRatio="1:1"
                 app:srcCompat="@drawable/ic_edit"
@@ -194,7 +187,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@id/id_Edit"
-                app:srcCompat="@drawable/ic_delete" />
+                app:srcCompat="@drawable/ic_trash_can_regular" />
         </LinearLayout>
 
     </LinearLayout>
