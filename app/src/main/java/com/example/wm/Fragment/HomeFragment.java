@@ -154,6 +154,8 @@ private MyDataStore myDataStore;
                         addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList, AddListener);
                         recyclerview_details.setAdapter(addAdapter);
                         addAdapter.notifyDataSetChanged();
+                        //bottomSheet.setContentView(bottom_view);
+                       // bottomSheet.show();
                     }
                 });
 
@@ -161,8 +163,7 @@ private MyDataStore myDataStore;
 
             }
         });
-        bottomSheet.setContentView(bottom_view);
-        bottomSheet.show();
+
         /*if(addPhonenumArrayList.get(0).getS_phonenum()==null) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

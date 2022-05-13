@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -33,6 +34,8 @@ import com.example.wm.Class.MyLog;
 import com.example.wm.R;
 import com.example.wm.ViewModel.MyDataStore;
 import com.example.wm.WebService_Class;
+import com.example.wm.databinding.BottomSheetBinding;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
@@ -54,6 +57,7 @@ import java.util.TimerTask;
  */
 public class EditFragment extends Fragment {
     private MyDataStore myDataStore;
+    private BottomSheetBehavior bottomSheetBehavior;
     private EditText name;
     private AutoCompleteTextView phonenum;
     private String  s_name,s_phonenum,TAG="EditFragment";
@@ -62,7 +66,7 @@ public class EditFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private AddAdapter addAdapter;
     private List<AddPhonenum> addPhonenumArrayList=new ArrayList<>();
-    private List<AddPhonenum> data_set;
+    private List<AddPhonenum> data_set=new ArrayList<>();
     //private RecyclerView recyclerView,recyclerview_add_num_new;
     private String mParam1;
     private String mParam2;
@@ -131,7 +135,7 @@ public class EditFragment extends Fragment {
 
         //Post post = gson.fromJson(reader, Post.class);
         //AddPhonenum addPhonenumArray = gson.fromJson(json, AddPhonenum.class);
-        data_set=gson.fromJson(json, type);
+        //data_set=gson.fromJson(json, type);
         //MyLog.e(TAG, "Recyclerview>>edit begin data_set>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(data_set));
         /*recyclerView=view.findViewById(R.id.recyclerview_add_num);
         recyclerview_add_num_new=view.findViewById(R.id.recyclerview_add_num_new);
@@ -155,25 +159,7 @@ public class EditFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Getadddata();
-                BottomSheetDialog bottomSheet = new BottomSheetDialog(requireContext());
-                View view1=LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet,null);
-                RecyclerView recyclerview_add_num_new=view1.findViewById(R.id.recyclerview_add_num_new);
-                MyApplication.getMainThreadHandler().post(new Runnable() {
-                    @Override
-                    public void run() {
 
-                        recyclerview_add_num_new.setHasFixedSize(true);
-                        recyclerview_add_num_new.setLayoutManager(new LinearLayoutManager(getContext()));
-                        recyclerview_add_num_new.setNestedScrollingEnabled(false);
-                        addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList, AddListener);
-                        recyclerview_add_num_new.setAdapter(addAdapter);
-                        addAdapter.notifyDataSetChanged();
-
-
-                    }
-                });
-                bottomSheet.setContentView(view1);
-                bottomSheet.show();
             }
         });
 
@@ -252,6 +238,8 @@ public class EditFragment extends Fragment {
             phonenum.setError("please enter a valid  phone number",getResources().getDrawable(R.drawable.ic_warning_symbol));
         }
         else {
+            name.setText("");
+            phonenum.setText("");
             hideKeyboard(add);
             Date currentTime = Calendar.getInstance().getTime();
             AddPhonenum addPhonenum=new AddPhonenum(
@@ -261,10 +249,69 @@ public class EditFragment extends Fragment {
             );
             addPhonenumArrayList.add(addPhonenum);
             myDataStore.setAddPhonenumArrayList(addPhonenumArrayList);
-            /*data_set.addAll(addPhonenumArrayList);
-            Gson gson = new Gson();
-            String json = gson.toJson(data_set);
-            new WebService_Class(getContext()).setArraylist(json);*/
+
+            BottomSheetDialog bottomSheet = new BottomSheetDialog(requireContext());
+            View view1=LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet,null);
+            RecyclerView recyclerview_add_num_new=view1.findViewById(R.id.recyclerview_add_num_new);
+            bottomSheetBehavior = bottomSheet.getBehavior();
+            //bottomSheetBehavior.setBottomSheetCallback(bottomSheetCallback);
+            ////////////////*******************************************
+            BottomSheetBehavior.BottomSheetCallback bottomSheetCallback =
+                    new BottomSheetBehavior.BottomSheetCallback(){
+                        @Override
+                        public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                            switch (newState){
+                                case BottomSheetBehavior.STATE_COLLAPSED:
+                                    //textPrompt.setText("COLLAPSED");
+                                    break;
+                                case BottomSheetBehavior.STATE_DRAGGING:
+                                    //textPrompt.setText("DRAGGING");
+                                    break;
+                                case BottomSheetBehavior.STATE_EXPANDED:
+                                    //textPrompt.setText("EXPANDED");
+                                    break;
+                                case BottomSheetBehavior.STATE_HIDDEN:
+                                    //textPrompt.setText("HIDDEN");
+                                    break;
+                                case BottomSheetBehavior.STATE_SETTLING:
+                                    //textPrompt.setText("SETTLING");
+                                    break;
+                                default:
+                                    //textPrompt.setText("unknown...");
+                            }
+                        }
+
+                        @Override
+                        public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+                        }
+                    };
+            ////////////////*******************************************
+            bottomSheetBehavior.setBottomSheetCallback(bottomSheetCallback);
+
+            MyApplication.getMainThreadHandler().post(new Runnable() {
+                @Override
+                public void run() {
+
+                    recyclerview_add_num_new.setHasFixedSize(true);
+                    recyclerview_add_num_new.setLayoutManager(new LinearLayoutManager(getContext()));
+                    recyclerview_add_num_new.setNestedScrollingEnabled(false);
+                    addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList, AddListener);
+                    recyclerview_add_num_new.setAdapter(addAdapter);
+
+                    data_set.addAll(addPhonenumArrayList);
+                    Gson gson = new Gson();
+                    String json = gson.toJson(data_set);
+                    new WebService_Class(getContext()).setArraylist(json);
+                    addAdapter.notifyDataSetChanged();
+
+
+                }
+            });
+            bottomSheet.setContentView(view1);
+            bottomSheet.show();
+            bottomSheetBehavior.setPeekHeight(150);
+            //bottomSheet.setCancelable(false);
 
 
 

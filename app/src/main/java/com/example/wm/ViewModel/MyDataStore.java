@@ -7,7 +7,11 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.wm.Class.AddPhonenum;
+import com.example.wm.WebService_Class;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +20,17 @@ public class MyDataStore extends AndroidViewModel {
     private MutableLiveData<List<AddPhonenum>> list_livedata=new MutableLiveData<>();
     public MyDataStore(@NonNull Application application) {
         super(application);
+        String json=new WebService_Class(application).getArraylist();
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<AddPhonenum>>() {}.getType();
+        if(json==null||json.isEmpty())
+        {
+
+        }
+        else {
+            addPhonenumArrayList=gson.fromJson(json, type);
+            this.list_livedata.postValue(addPhonenumArrayList);
+        }
     }
 
     public List<AddPhonenum> getAddPhonenumArrayList() {
