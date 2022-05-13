@@ -10,16 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add Contacts"
-                android:drawableStart="@drawable/ic_users_solid"
-                android:drawablePadding="15dp"
-                android:paddingStart="10dp"
-                android:textColor="@color/purple"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contacts"
+            android:drawableStart="@drawable/ic_users_solid"
+            android:drawablePadding="15dp"
+            android:paddingStart="10dp"
+            android:textColor="@color/purple"
+            android:textSize="18dp"
+            android:textStyle="bold" />
         <include
             layout="@layout/search_bar"/>
         <androidx.recyclerview.widget.RecyclerView

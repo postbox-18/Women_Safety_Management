@@ -37,6 +37,7 @@
         <entry key="app/src/main/res/drawable/bottom_sheet_card.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/edittext_box_light_blue.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/edittext_box_white.xml" value="0.2015" />
+        <entry key="app/src/main/res/drawable/go_btn.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/ic_circle_user_regular.xml" value="0.158" />
         <entry key="app/src/main/res/drawable/ic_envelope_regular.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/ic_envelope_solid.xml" value="0.2015" />
@@ -58,9 +59,11 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.12" />
         <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/bottom_sheet_home.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/bottom_view.xml" value="1.25" />
         <entry key="app/src/main/res/layout/cardview_addadapter.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_register_activitys.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.14" />
         <entry key="app/src/main/res/layout/search_bar.xml" value="0.19375" />

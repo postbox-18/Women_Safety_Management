@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +36,7 @@ import com.example.wm.WebService_Class;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -119,10 +121,18 @@ private MyDataStore myDataStore;
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Web_Config", MODE_PRIVATE);
         String temp_URL = sharedPreferences.getString("Pin", null);
         String pin=new WebService_Class(getActivity()).getPin();
+
+
        /* String json=new WebService_Class(getActivity()).getArraylist();
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<AddPhonenum>>() {}.getType();*/
-        recyclerview_details = view.findViewById(R.id.recyclerview_add_num);
+
+
+        //Bottom sheet
+        BottomSheetDialog bottomSheet = new BottomSheetDialog(requireContext());
+        View bottom_view=LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet_home,null);
+        recyclerview_details = bottom_view.findViewById(R.id.recyclerview_add_num_new);
+
         //Post post = gson.fromJson(reader, Post.class);
         //AddPhonenum addPhonenumArray = gson.fromJson(json, AddPhonenum.class);
     // MyLog.d(TAG,"ClickeTest:updatedMedicine frag:"+new GsonBuilder().setPrettyPrinting().create().toJson(updatedMedicine));
@@ -133,18 +143,26 @@ private MyDataStore myDataStore;
             public void run() {
 
                 //addPhonenumArrayList=gson.fromJson(json, type);
-                addPhonenumArrayList=myDataStore.getAddPhonenumArrayList();
-                MyLog.e(TAG, "Recyclerview>>home begins>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
-                recyclerview_details.setHasFixedSize(true);
-                recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
-                recyclerview_details.setNestedScrollingEnabled(false);
-                addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList, AddListener);
-                recyclerview_details.setAdapter(addAdapter);
-                addAdapter.notifyDataSetChanged();
+                myDataStore.getList_livedata().observe(getViewLifecycleOwner(), new Observer<List<AddPhonenum>>() {
+                    @Override
+                    public void onChanged(List<AddPhonenum> addPhonenums) {
+                        addPhonenumArrayList=addPhonenums;
+                        MyLog.e(TAG, "Recyclerview>>home begins>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
+                        recyclerview_details.setHasFixedSize(true);
+                        recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
+                        recyclerview_details.setNestedScrollingEnabled(false);
+                        addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList, AddListener);
+                        recyclerview_details.setAdapter(addAdapter);
+                        addAdapter.notifyDataSetChanged();
+                    }
+                });
+
 
 
             }
         });
+        bottomSheet.setContentView(bottom_view);
+        bottomSheet.show();
         /*if(addPhonenumArrayList.get(0).getS_phonenum()==null) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
