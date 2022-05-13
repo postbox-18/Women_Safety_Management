@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bottom_sheet_card"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
@@ -19,6 +20,8 @@
                 android:textColor="@color/purple"
                 android:textSize="18dp"
                 android:textStyle="bold" />
+        <include
+            layout="@layout/search_bar"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_add_num_new"
             android:layout_width="match_parent"
@@ -26,4 +29,4 @@
             tools:itemCount="3"
             tools:listitem="@layout/cardview_addadapter" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

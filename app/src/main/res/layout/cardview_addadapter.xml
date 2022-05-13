@@ -160,8 +160,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:padding="15dp"
             android:layout_weight="10"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             >
             <ImageView
                 android:id="@+id/id_Edit"
@@ -176,7 +177,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/id_Delete"
                 app:layout_constraintBottom_toBottomOf="parent"/>
-
+            <ImageView
+                android:id="@+id/msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/id_Edit"
+                app:srcCompat="@drawable/ic_envelope_regular" />
             <ImageView
                 android:id="@+id/id_Delete"
                 android:layout_width="wrap_content"
@@ -188,6 +200,7 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@id/id_Edit"
                 app:srcCompat="@drawable/ic_trash_can_regular" />
+
         </LinearLayout>
 
     </LinearLayout>

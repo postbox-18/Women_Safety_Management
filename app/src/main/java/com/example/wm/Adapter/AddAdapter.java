@@ -79,6 +79,13 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
             }
 
         });
+        holder.msg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.msg.setBackground(context.getResources().getDrawable(R.drawable.ic_envelope_solid));
+                //check and send msg
+            }
+        });
         //MyLog.e(TAG, "Recyclerview>>home>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
        // total count.get_TotalItemCount(String.valueOf(addAdapters.size()));
     }
@@ -96,6 +103,7 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
        // final TextView date;
         final ImageView im_Remove;
         ImageView im_Edit;
+        ImageView msg;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -105,6 +113,7 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
             im_Remove = itemView.findViewById(R.id.id_Delete);
             num = itemView.findViewById(R.id.num);
             name = itemView.findViewById(R.id.name);
+            msg = itemView.findViewById(R.id.msg);
             //date = itemView.findViewById(R.id.date_time);
 
         }

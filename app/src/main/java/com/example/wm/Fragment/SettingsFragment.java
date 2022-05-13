@@ -6,12 +6,16 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,6 +57,9 @@ public class SettingsFragment extends Fragment {
     private AppCompatButton update;
     private CardView check_pin_layout,first_lay;
     private int btn=-1;
+    private ConstraintLayout top_bg;
+    private LinearLayout linearLayout;
+    private Animation slide_down_anim,slide_up_anim,fade_in_anim;
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -86,7 +93,9 @@ public class SettingsFragment extends Fragment {
         change_pin=view.findViewById(R.id.change_pin);
         key_maps=view.findViewById(R.id.key_map);
         logout=view.findViewById(R.id.log_out);
-
+        top_bg=view.findViewById(R.id.top_bgs);
+        linearLayout=view.findViewById(R.id.linear_layout);
+        Top_Bg();
         bottomSheetDialog = new BottomSheetDialog(requireContext());
         tuser_name=new WebService_Class(getContext()).getName();
         tphone_number=new WebService_Class(getContext()).getPhonenum();
@@ -130,10 +139,11 @@ public class SettingsFragment extends Fragment {
         key_maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialog.show();
+                Toast.makeText(getContext(), "Update Soon", Toast.LENGTH_SHORT).show();
+                /*bottomSheetDialog.show();
                 head.setText("Change Key Map");
                 text.setText(getContext().getResources().getString(R.string.key_map));
-                btn=2;
+                btn=2;*/
             }
         });
         update.setOnClickListener(new View.OnClickListener() {
@@ -167,5 +177,22 @@ public class SettingsFragment extends Fragment {
         return view;
     }
 
+    private void Top_Bg() {
+        slide_down_anim = AnimationUtils.loadAnimation(getContext(),
+                R.anim.slide_down);
+        slide_up_anim = AnimationUtils.loadAnimation(getContext(), R.anim.slide_up);
+        fade_in_anim = AnimationUtils.loadAnimation(getContext(), R.anim.fade);
+        top_bg.startAnimation(slide_down_anim);
+        linearLayout.startAnimation(fade_in_anim);
+        //linearLayout.startAnimation(slide_up_anim);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               /* Intent intent = new Intent(RegisterActivity.this, NextActivity.class);
+                startActivity(intent);*/
+
+            }
+        }, 5000);
+    }
 
 }
