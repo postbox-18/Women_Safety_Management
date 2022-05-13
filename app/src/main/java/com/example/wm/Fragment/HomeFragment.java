@@ -37,6 +37,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -63,7 +64,8 @@ private MyDataStore myDataStore;
     private FusedLocationProviderClient mFusedLocationClient;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
     private List<AddPhonenum> addPhonenumArrayList;
-    private TextView user_location;
+    private TextView latitudes,longitudes;
+    private FloatingActionButton fab;
     private AddAdapter.RemovePosition AddListener=new AddAdapter.RemovePosition() {
 
         @Override
@@ -127,11 +129,14 @@ private MyDataStore myDataStore;
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<AddPhonenum>>() {}.getType();*/
 
-
+        fab = view.findViewById(R.id.fab);
+        longitudes = view.findViewById(R.id.lot);
+        latitudes = view.findViewById(R.id.lat);
         //Bottom sheet
         BottomSheetDialog bottomSheet = new BottomSheetDialog(requireContext());
         View bottom_view=LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet_home,null);
         recyclerview_details = bottom_view.findViewById(R.id.recyclerview_add_num_new);
+
 
         //Post post = gson.fromJson(reader, Post.class);
         //AddPhonenum addPhonenumArray = gson.fromJson(json, AddPhonenum.class);
@@ -154,8 +159,7 @@ private MyDataStore myDataStore;
                         addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList, AddListener);
                         recyclerview_details.setAdapter(addAdapter);
                         addAdapter.notifyDataSetChanged();
-                        //bottomSheet.setContentView(bottom_view);
-                       // bottomSheet.show();
+
                     }
                 });
 
@@ -164,40 +168,14 @@ private MyDataStore myDataStore;
             }
         });
 
-        /*if(addPhonenumArrayList.get(0).getS_phonenum()==null) {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("Message");
-            builder.setMessage("Unable to get Details, do you want to retry?");
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //load_SearchFragment();
-                    dialog.dismiss();
-                }
-            });
-
-
-            builder.create().show();
-
-
-            Toast.makeText(getContext(), "empty", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            recyclerview_details = view.findViewById(R.id.recyclerview_add_num);
-            recyclerview_details.setHasFixedSize(true);
-            recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerview_details.setNestedScrollingEnabled(false);
-            addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList);
-            recyclerview_details.setAdapter(addAdapter);
-
-        }*/
-
-
-
-        user_location = view.findViewById(R.id.user_location);
-
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheet.setContentView(bottom_view);
+                bottomSheet.show();
+            }
+        });
 
         /*send_email = view.findViewById(R.id.send_email);
         press_send_button = view.findViewById(R.id.press_send_button);*/
@@ -329,8 +307,9 @@ private MyDataStore myDataStore;
                                 // Logic to handle location object
                                 Double latittude = location.getLatitude();
                                 Double longitude = location.getLongitude();
-
-                                user_location.setText("Latitude = "+latittude + "\nLongitude = " + longitude);
+                                latitudes.setText(latittude.toString());
+                                longitudes.setText(longitude.toString());
+                                //user_location.setText("Latitude = "+latittude + "\nLongitude = " + longitude);
 
                                 for(int i=0;i<addPhonenumArrayList.size();i++) {
 
