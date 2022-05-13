@@ -79,11 +79,24 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
             }
 
         });
-        holder.msg.setOnClickListener(new View.OnClickListener() {
+
+        holder.msg_uncheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.msg.setBackground(context.getResources().getDrawable(R.drawable.ic_envelope_solid));
-                //check and send msg
+                MyLog.e(TAG,"click>>Checked>>");
+                holder.msg_check.setVisibility(View.VISIBLE);
+
+               // holder.msg_uncheck.setVisibility(View.GONE);
+                 //check and send msg
+            }
+        });
+        holder.msg_check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyLog.e(TAG,"click>>Un Checked>>");
+                holder.msg_uncheck.setVisibility(View.VISIBLE);
+                holder.msg_check.setVisibility(View.GONE);
+                 //check and send msg
             }
         });
         //MyLog.e(TAG, "Recyclerview>>home>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
@@ -103,7 +116,8 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
        // final TextView date;
         final ImageView im_Remove;
         ImageView im_Edit;
-        ImageView msg;
+        ImageView msg_check;
+        ImageView msg_uncheck;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -113,7 +127,8 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
             im_Remove = itemView.findViewById(R.id.id_Delete);
             num = itemView.findViewById(R.id.num);
             name = itemView.findViewById(R.id.name);
-            msg = itemView.findViewById(R.id.msg);
+            msg_uncheck = itemView.findViewById(R.id.msg_uncheck);
+            msg_check = itemView.findViewById(R.id.msg_check);
             //date = itemView.findViewById(R.id.date_time);
 
         }
