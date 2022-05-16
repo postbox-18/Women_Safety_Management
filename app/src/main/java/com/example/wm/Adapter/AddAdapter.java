@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wm.Class.AddPhonenum;
 import com.example.wm.Class.MyLog;
 import com.example.wm.Fragment.CheckData;
+import com.example.wm.Fragment.MyApplication;
 import com.example.wm.R;
 import com.example.wm.ViewModel.MyDataStore;
-import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,25 +25,27 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
 
 
     public List<AddPhonenum> addPhonenumArrayList;
-    public List<CheckData> checkData=new ArrayList<>();
-    private  String finalTotal,TAG="AddAdapter";
+    public List<CheckData> checkData = new ArrayList<>();
+    private String finalTotal, TAG = "AddAdapter";
     Context context;
     AddAdapter.RemovePosition removePosition;
     private MyDataStore myDataStore;
-    public interface RemovePosition
-    {
+
+    public interface RemovePosition {
         void getPosition(int i);
     }
-    public AddAdapter(Context mcontext, List<AddPhonenum> AddAdapters, RemovePosition addListener) {
+
+    public AddAdapter(Context mcontext, List<AddPhonenum> AddAdapters, RemovePosition addListener, MyDataStore myDataStore) {
         this.addPhonenumArrayList = AddAdapters;
-        this.context=mcontext;
-        this.removePosition=addListener;
+        this.context = mcontext;
+        this.removePosition = addListener;
+        this.myDataStore = myDataStore;
 
     }
-
     @Override
     public AddAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+
         View view = layoutInflater.inflate(R.layout.cardview_addadapter, parent, false);
 
         return new ViewHolder(view);
@@ -55,9 +57,7 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
 
         holder.num.setText(addPhonenum.getS_phonenum());
         holder.name.setText(addPhonenum.getS_name());
-       // holder.date.setText(addPhonenum.getCurrentTime());
-
-
+        // holder.date.setText(addPhonenum.getCurrentTime());
 
 
         holder.im_Remove.setOnClickListener(new View.OnClickListener() {
@@ -88,34 +88,40 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
         holder.msg_uncheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyLog.e(TAG,"click>>Checked>>"+position+"\n"+ addPhonenum.getS_name()+">>"+
+                MyLog.e(TAG, "click>>Checked>>" + position + "\n" + addPhonenum.getS_name() + ">>" +
                         addPhonenum.getS_phonenum());
                 holder.msg_check.setVisibility(View.VISIBLE);
 
-                CheckData checkData1=new CheckData(
+                CheckData checkData1 = new CheckData(
                         addPhonenum.getS_name(),
                         addPhonenum.getS_phonenum()
                 );
                 checkData.add(checkData1);
-                MyLog.e(TAG, "click>>check::\n" + new GsonBuilder().setPrettyPrinting().create().toJson(checkData));
-               // holder.msg_uncheck.setVisibility(View.GONE);
-                 //check and send msg
+                //MyLog.e(TAG, "click>>check::\n" + new GsonBuilder().setPrettyPrinting().create().toJson(checkData));
+                // holder.msg_uncheck.setVisibility(View.GONE);
+                //check and send msg
+                MyApplication.getMainThreadHandler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        myDataStore.setCheckData(checkData);
+                    }
+                });
             }
         });
-        myDataStore.setCheckData(checkData);
+
         holder.msg_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyLog.e(TAG,"click>>Un Checked>>"+position);
+                MyLog.e(TAG, "click>>Un Checked>>" + position);
                 holder.msg_uncheck.setVisibility(View.VISIBLE);
                 holder.msg_check.setVisibility(View.GONE);
 
-                 //check and send msg
+                //check and send msg
             }
         });
 
         //MyLog.e(TAG, "Recyclerview>>home>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
-       // total count.get_TotalItemCount(String.valueOf(addAdapters.size()));
+        // total count.get_TotalItemCount(String.valueOf(addAdapters.size()));
     }
 
     @Override
@@ -128,7 +134,7 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
 
         final TextView num;
         final TextView name;
-       // final TextView date;
+        // final TextView date;
         final ImageView im_Remove;
         ImageView im_Edit;
         ImageView msg_check;

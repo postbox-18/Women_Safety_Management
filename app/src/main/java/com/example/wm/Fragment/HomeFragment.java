@@ -185,7 +185,7 @@ public class HomeFragment extends BaseFragment {
                         recyclerview_details.setHasFixedSize(true);
                         recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
                         recyclerview_details.setNestedScrollingEnabled(false);
-                        addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList, AddListener);
+                        addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList, AddListener,myDataStore);
                         recyclerview_details.setAdapter(addAdapter);
                         addAdapter.notifyDataSetChanged();
 
@@ -246,8 +246,12 @@ public class HomeFragment extends BaseFragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fetchLocation();
-                //Toast.makeText(getActivity(), "SENDING MESSAGE", Toast.LENGTH_SHORT).show();
+                if(checkData.size()>0) {
+                    fetchLocation();
+                }
+                else {
+                    Toast.makeText(getActivity(), "Check the number u r selected", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

@@ -30,16 +30,13 @@ import android.widget.TextView;
 
 import com.example.wm.Adapter.AddAdapter;
 import com.example.wm.Class.AddPhonenum;
-import com.example.wm.Class.MyLog;
 import com.example.wm.R;
 import com.example.wm.ViewModel.MyDataStore;
 import com.example.wm.WebService_Class;
-import com.example.wm.databinding.BottomSheetBinding;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -297,7 +294,7 @@ public class EditFragment extends Fragment {
                     recyclerview_add_num_new.setHasFixedSize(true);
                     recyclerview_add_num_new.setLayoutManager(new LinearLayoutManager(getContext()));
                     recyclerview_add_num_new.setNestedScrollingEnabled(false);
-                    addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList, AddListener);
+                    addAdapter = new AddAdapter(getActivity(), addPhonenumArrayList, AddListener, myDataStore);
                     recyclerview_add_num_new.setAdapter(addAdapter);
 
                     data_set.addAll(addPhonenumArrayList);

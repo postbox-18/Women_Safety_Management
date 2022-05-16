@@ -96,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/purple"
-                android:inputType="number"
+                android:inputType="numberPassword"
                 android:maxLength="4" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

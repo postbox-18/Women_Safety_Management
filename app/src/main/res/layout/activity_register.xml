@@ -120,7 +120,7 @@
                 android:drawableStart="@drawable/ic_key"
                 android:drawablePadding="10dp"
                 android:hint="PIN"
-                android:inputType="number"
+                android:inputType="numberPassword"
                 android:maxLength="4"
                 android:imeOptions="actionNext"
                 android:textColor="@color/purple"
@@ -139,8 +139,8 @@
                 android:hint="CONFIRM PIN"
                 android:textColor="@color/purple"
                 android:imeOptions="actionDone"
+                android:inputType="numberPassword"
                 android:layout_margin="15dp"
-                android:inputType="number"
                 android:maxLength="4"
                 android:padding="25dp"
                 android:singleLine="true" />
