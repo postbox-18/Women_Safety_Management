@@ -51,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         name=findViewById(R.id.name);
+        name.requestFocus();
         heads=findViewById(R.id.heads);
         about=findViewById(R.id.about);
         top_bg=findViewById(R.id.head);
@@ -73,7 +74,6 @@ public class RegisterActivity extends AppCompatActivity {
        /* phonenum_layout=findViewById(R.id.phonenum_layout);
         addTextChanger(phonenum,phonenum_layout);
         setOnFoucsChangeLister(phonenum,phonenum_layout);*/
-        phonenum.requestFocus();
         phonenum.setThreshold(10);
 
 
@@ -81,7 +81,6 @@ public class RegisterActivity extends AppCompatActivity {
         /*pin_layout=findViewById(R.id.pin_layout);
         addTextChanger(pin,pin_layout);
         setOnFoucsChangeLister(pin,pin_layout);*/
-        pin.requestFocus();
         pin.setThreshold(3);
 
 
@@ -90,7 +89,6 @@ public class RegisterActivity extends AppCompatActivity {
        /* cpin_layout=findViewById(R.id.cpin_layout);
         addTextChanger(cpin,cpin_layout);
         setOnFoucsChangeLister(cpin,cpin_layout);*/
-        pin.requestFocus();
         pin.setThreshold(3);
 
         register=findViewById(R.id.registerbtn);

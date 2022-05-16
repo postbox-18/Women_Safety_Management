@@ -61,8 +61,8 @@
         <entry key="app/src/main/res/layout-sw600dp/splashscreen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.12" />
-        <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/bottom_sheet_home.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/bottom_view.xml" value="1.25" />
         <entry key="app/src/main/res/layout/cardview_addadapter.xml" value="0.1" />

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    app:behavior_peekHeight="250dp"
+    app:behavior_peekHeight="500dp"
+    android:background="@color/bg_white"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
     tools:context=".Fragment.EditFragment">
 
@@ -108,6 +109,7 @@
                     android:drawablePadding="10dp"
                     android:padding="15dp"
                     android:hint="Enter the Name"
+                    android:imeOptions="actionNext"
                     android:textSize="12dp"
                     android:singleLine="true"
                     android:textColor="@color/purple" />
@@ -122,6 +124,7 @@
                     android:textSize="12dp"
                     android:inputType="number"
                     android:maxLength="10"
+                    android:imeOptions="actionDone"
                     android:padding="15dp"
                     android:singleLine="true"
                     android:textColor="@color/purple" />

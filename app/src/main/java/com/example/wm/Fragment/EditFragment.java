@@ -116,7 +116,7 @@ public class EditFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_edit, container, false);
         name=view.findViewById(R.id.name);
-
+        name.requestFocus();
         heads=view.findViewById(R.id.head);
         about=view.findViewById(R.id.about);
         top_bg=view.findViewById(R.id.head_layout);
@@ -248,6 +248,7 @@ public class EditFragment extends Fragment {
 
             );
             addPhonenumArrayList.add(addPhonenum);
+
             myDataStore.setAddPhonenumArrayList(addPhonenumArrayList);
 
             BottomSheetDialog bottomSheet = new BottomSheetDialog(requireContext());
