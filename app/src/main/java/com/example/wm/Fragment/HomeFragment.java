@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +54,11 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class HomeFragment extends BaseFragment {
-private MyDataStore myDataStore;
+
+    private LinearLayout headings;
+    private TextView user_name, last_location;
+    private MyDataStore myDataStore;
+    private String plast_location;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -64,9 +70,9 @@ private MyDataStore myDataStore;
     private FusedLocationProviderClient mFusedLocationClient;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
     private List<AddPhonenum> addPhonenumArrayList;
-    private TextView latitudes,longitudes;
+    private TextView latitudes, longitudes;
     private FloatingActionButton fab;
-    private AddAdapter.RemovePosition AddListener=new AddAdapter.RemovePosition() {
+    private AddAdapter.RemovePosition AddListener = new AddAdapter.RemovePosition() {
 
         @Override
         public void getPosition(int groupPositionParent) {
@@ -78,9 +84,9 @@ private MyDataStore myDataStore;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private String TAG="HomeFragment";
+    private String TAG = "HomeFragment";
     Bundle bundle;
-  //  private ImageView id_tick;
+    //  private ImageView id_tick;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -107,7 +113,7 @@ private MyDataStore myDataStore;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        myDataStore=new ViewModelProvider(getActivity()).get(MyDataStore.class);
+        myDataStore = new ViewModelProvider(getActivity()).get(MyDataStore.class);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -119,30 +125,50 @@ private MyDataStore myDataStore;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=   inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Web_Config", MODE_PRIVATE);
         String temp_URL = sharedPreferences.getString("Pin", null);
-        String pin=new WebService_Class(getActivity()).getPin();
+        String pin = new WebService_Class(getActivity()).getPin();
 
 
        /* String json=new WebService_Class(getActivity()).getArraylist();
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<AddPhonenum>>() {}.getType();*/
 
+        headings = view.findViewById(R.id.heading);
+        last_location = view.findViewById(R.id.last_location);
+        user_name = view.findViewById(R.id.user_name);
+
+        user_name.setText(new WebService_Class(getContext()).getName());
+
+
         fab = view.findViewById(R.id.fab);
         longitudes = view.findViewById(R.id.lot);
         latitudes = view.findViewById(R.id.lat);
         //Bottom sheet
         BottomSheetDialog bottomSheet = new BottomSheetDialog(requireContext());
-        View bottom_view=LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet_home,null);
+        View bottom_view = LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet_home, null);
         recyclerview_details = bottom_view.findViewById(R.id.recyclerview_add_num_new);
 
 
         //Post post = gson.fromJson(reader, Post.class);
         //AddPhonenum addPhonenumArray = gson.fromJson(json, AddPhonenum.class);
-    // MyLog.d(TAG,"ClickeTest:updatedMedicine frag:"+new GsonBuilder().setPrettyPrinting().create().toJson(updatedMedicine));
+        // MyLog.d(TAG,"ClickeTest:updatedMedicine frag:"+new GsonBuilder().setPrettyPrinting().create().toJson(updatedMedicine));
         //MyLog.e(TAG,"list>>home>>"+addPhonenumArrayList.size()+">>"+new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
         /* id_tick = view.findViewById(R.id.id_tick);*/
+        MyApplication.getMainThreadHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                myDataStore.getMutableLiveData().observe(getViewLifecycleOwner(), new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+                        plast_location = s;
+                        MyLog.e(TAG,"loc>>"+s);
+                        last_location.setText(s);
+                    }
+                });
+            }
+        });
         MyApplication.getMainThreadHandler().post(new Runnable() {
             @Override
             public void run() {
@@ -151,7 +177,7 @@ private MyDataStore myDataStore;
                 myDataStore.getList_livedata().observe(getViewLifecycleOwner(), new Observer<List<AddPhonenum>>() {
                     @Override
                     public void onChanged(List<AddPhonenum> addPhonenums) {
-                        addPhonenumArrayList=addPhonenums;
+                        addPhonenumArrayList = addPhonenums;
                         MyLog.e(TAG, "Recyclerview>>home begins>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
                         recyclerview_details.setHasFixedSize(true);
                         recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -162,7 +188,6 @@ private MyDataStore myDataStore;
 
                     }
                 });
-
 
 
             }
@@ -183,7 +208,7 @@ private MyDataStore myDataStore;
         btn = view.findViewById(R.id.btn);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
-        ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
+        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
 
 
 
@@ -252,7 +277,7 @@ private MyDataStore myDataStore;
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            MyLog.e(TAG,"msg>>permission is not granted");
+            MyLog.e(TAG, "msg>>permission is not granted");
             // Permission is not granted
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
@@ -260,7 +285,7 @@ private MyDataStore myDataStore;
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
-                MyLog.e(TAG,"msg>>please grant permission");
+                MyLog.e(TAG, "msg>>please grant permission");
                 new AlertDialog.Builder(getActivity())
                         .setTitle("Required Location Permission")
                         .setMessage("You have to give this permission to acess this feature")
@@ -284,7 +309,7 @@ private MyDataStore myDataStore;
 
             } else {
                 // No explanation needed; request the permission
-                MyLog.e(TAG,"msg>>request the permission");
+                MyLog.e(TAG, "msg>>request the permission");
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                         MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION);
@@ -294,29 +319,32 @@ private MyDataStore myDataStore;
                 // result of the request.
 
             }
-        }else {
+        } else {
             // Permission has already been granted
-            MyLog.e(TAG,"msg>>permission has already granted");
+            MyLog.e(TAG, "msg>>permission has already granted");
             mFusedLocationClient.getLastLocation()
                     .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
                             // Got last known location. In some rare situations this can be null.
                             if (location != null) {
-                                MyLog.e(TAG,"msg>>location");
+                                MyLog.e(TAG, "msg>>location");
                                 // Logic to handle location object
                                 Double latittude = location.getLatitude();
                                 Double longitude = location.getLongitude();
+                                String Location = latittude + "," + longitude;
+                                myDataStore.setLocation(Location);
+                                new WebService_Class(getContext()).setLocation(Location);
                                 latitudes.setText(latittude.toString());
                                 longitudes.setText(longitude.toString());
                                 //user_location.setText("Latitude = "+latittude + "\nLongitude = " + longitude);
 
-                                for(int i=0;i<addPhonenumArrayList.size();i++) {
+                                for (int i = 0; i < addPhonenumArrayList.size(); i++) {
 
                                     String phoneNumber = addPhonenumArrayList.get(i).getS_phonenum();
                                     //String message = "Latitude = " + latittude + " Longitude = " + longitude;
-                                    String message = "http://maps.google.com/maps?daddr=" +latittude+ "," + longitude;
-                                    MyLog.e(TAG,"msg>>"+message+"\n>>phone>>"+phoneNumber);
+                                    String message = "http://maps.google.com/maps?daddr=" + latittude + "," + longitude;
+                                    MyLog.e(TAG, "msg>>" + message + "\n>>phone>>" + phoneNumber);
                                     if (message != null && phoneNumber != null) {
                                         SmsManager smsManager = SmsManager.getDefault();
                                         smsManager.sendTextMessage(phoneNumber, null, message, null, null);
@@ -326,10 +354,8 @@ private MyDataStore myDataStore;
                                     }
                                 }
 
-                            }
-                            else
-                            {
-                                MyLog.e(TAG,"msg>>location is "+location);
+                            } else {
+                                MyLog.e(TAG, "msg>>location is " + location);
                             }
                         }
                     });
@@ -340,11 +366,11 @@ private MyDataStore myDataStore;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION){
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 //abc
 
-            }else{
+            } else {
 
             }
         }

@@ -47,6 +47,7 @@
         <entry key="app/src/main/res/drawable/ic_envelope_solid_s.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/ic_key.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/ic_key_solid.xml" value="0.2015" />
+        <entry key="app/src/main/res/drawable/ic_location_dot_solid.xml" value="0.158" />
         <entry key="app/src/main/res/drawable/ic_location_pin_lock_solid.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/ic_man_vector__22_.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/ic_phone__1_.xml" value="0.2015" />
@@ -67,7 +68,7 @@
         <entry key="app/src/main/res/layout/bottom_view.xml" value="1.25" />
         <entry key="app/src/main/res/layout/cardview_addadapter.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_register_activitys.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.14" />
         <entry key="app/src/main/res/layout/search_bar.xml" value="0.19375" />

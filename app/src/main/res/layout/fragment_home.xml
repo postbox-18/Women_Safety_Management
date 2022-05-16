@@ -9,16 +9,76 @@
     app:behavior_peekHeight="250dp"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
     tools:context=".Fragment.HomeFragment">
+    <LinearLayout
+        android:id="@+id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_weight="0.0085"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_layout"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:src="@drawable/ic_user_solid"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello!"
+            />
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple"
+                android:hint="user-name"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:drawableStart="@drawable/ic_location_dot_solid"
+                android:hint="Last Seen Location"/>
+            <TextView
+                android:id="@+id/last_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/purple"
+                android:textColor="@color/purple"
+                android:hint="27.2046°,77.4977°"/>
 
+        </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/btn_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintVertical_weight="0.5"
         app:layout_constraintBottom_toTopOf="@id/name_ct_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/heading">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn"

@@ -12,6 +12,7 @@ public class WebService_Class {
     protected final String Phonenum = "Phonenum";
     protected final String Arraylist = "Arraylist";
     protected final String CheckedBox = "CheckedBox";
+    protected final String Location = "Location";
 
     public WebService_Class(Context context) {
         sharedPreferences = context.getSharedPreferences("Web_Config", Context.MODE_PRIVATE);
@@ -90,6 +91,16 @@ public class WebService_Class {
     public String getCheckedBox()
     {
         return sharedPreferences.getString(CheckedBox, null);
+    }
+
+
+    public void setLocation(String location){
+        sharedPreferences.edit().putString(Location, location).commit();
+
+    }
+    public String getLocation()
+    {
+        return sharedPreferences.getString(Location, null);
     }
 
 
