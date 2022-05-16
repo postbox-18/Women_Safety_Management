@@ -70,6 +70,7 @@ public class HomeFragment extends BaseFragment {
     private FusedLocationProviderClient mFusedLocationClient;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
     private List<AddPhonenum> addPhonenumArrayList;
+    private List<CheckData> checkData;
     private TextView latitudes, longitudes;
     private FloatingActionButton fab;
     private AddAdapter.RemovePosition AddListener = new AddAdapter.RemovePosition() {
@@ -78,7 +79,7 @@ public class HomeFragment extends BaseFragment {
         public void getPosition(int groupPositionParent) {
             addPhonenumArrayList.remove(groupPositionParent);
             addAdapter.notifyDataSetChanged();
-            MyLog.e(TAG, "Recyclerview>>Edit after>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
+            //MyLog.e(TAG, "Recyclerview>>Edit after>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
         }
     };
     // TODO: Rename and change types of parameters
@@ -156,6 +157,7 @@ public class HomeFragment extends BaseFragment {
         // MyLog.d(TAG,"ClickeTest:updatedMedicine frag:"+new GsonBuilder().setPrettyPrinting().create().toJson(updatedMedicine));
         //MyLog.e(TAG,"list>>home>>"+addPhonenumArrayList.size()+">>"+new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
         /* id_tick = view.findViewById(R.id.id_tick);*/
+        //get last location
         MyApplication.getMainThreadHandler().post(new Runnable() {
             @Override
             public void run() {
@@ -169,6 +171,7 @@ public class HomeFragment extends BaseFragment {
                 });
             }
         });
+        //get added phone number
         MyApplication.getMainThreadHandler().post(new Runnable() {
             @Override
             public void run() {
@@ -178,7 +181,7 @@ public class HomeFragment extends BaseFragment {
                     @Override
                     public void onChanged(List<AddPhonenum> addPhonenums) {
                         addPhonenumArrayList = addPhonenums;
-                        MyLog.e(TAG, "Recyclerview>>home begins>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
+                        //MyLog.e(TAG, "Recyclerview>>home begins>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
                         recyclerview_details.setHasFixedSize(true);
                         recyclerview_details.setLayoutManager(new LinearLayoutManager(getContext()));
                         recyclerview_details.setNestedScrollingEnabled(false);
@@ -186,6 +189,20 @@ public class HomeFragment extends BaseFragment {
                         recyclerview_details.setAdapter(addAdapter);
                         addAdapter.notifyDataSetChanged();
 
+                    }
+                });
+
+
+            }
+        });
+        //get checked phone-number
+   MyApplication.getMainThreadHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                myDataStore.getMutableCheckData().observe(getViewLifecycleOwner(), new Observer<List<CheckData>>() {
+                    @Override
+                    public void onChanged(List<CheckData> checkDatas) {
+                        checkData = checkDatas;
                     }
                 });
 
@@ -334,14 +351,14 @@ public class HomeFragment extends BaseFragment {
                                 Double longitude = location.getLongitude();
                                 String Location = latittude + "," + longitude;
                                 myDataStore.setLocation(Location);
-                                new WebService_Class(getContext()).setLocation(Location);
+                                //new WebService_Class(getContext()).setLocation(Location);
                                 latitudes.setText(latittude.toString());
                                 longitudes.setText(longitude.toString());
                                 //user_location.setText("Latitude = "+latittude + "\nLongitude = " + longitude);
 
-                                for (int i = 0; i < addPhonenumArrayList.size(); i++) {
+                                for (int i = 0; i < checkData.size(); i++) {
 
-                                    String phoneNumber = addPhonenumArrayList.get(i).getS_phonenum();
+                                    String phoneNumber = checkData.get(i).getS_phonenum();
                                     //String message = "Latitude = " + latittude + " Longitude = " + longitude;
                                     String message = "http://maps.google.com/maps?daddr=" + latittude + "," + longitude;
                                     MyLog.e(TAG, "msg>>" + message + "\n>>phone>>" + phoneNumber);

@@ -81,7 +81,7 @@ public class EditFragment extends Fragment {
         public void getPosition(int groupPositionParent) {
             data_set.remove(groupPositionParent);
             addAdapter.notifyDataSetChanged();
-            MyLog.e(TAG, "Recyclerview>>Edit after>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(data_set));
+            //MyLog.e(TAG, "Recyclerview>>Edit after>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(data_set));
         }
     };
 

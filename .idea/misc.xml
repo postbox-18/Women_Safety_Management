@@ -68,7 +68,7 @@
         <entry key="app/src/main/res/layout/bottom_view.xml" value="1.25" />
         <entry key="app/src/main/res/layout/cardview_addadapter.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_register_activitys.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.14" />
         <entry key="app/src/main/res/layout/search_bar.xml" value="0.19375" />

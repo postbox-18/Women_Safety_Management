@@ -13,18 +13,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wm.Class.AddPhonenum;
 import com.example.wm.Class.MyLog;
+import com.example.wm.Fragment.CheckData;
 import com.example.wm.R;
+import com.example.wm.ViewModel.MyDataStore;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
 
 
     public List<AddPhonenum> addPhonenumArrayList;
+    public List<CheckData> checkData=new ArrayList<>();
     private  String finalTotal,TAG="AddAdapter";
     Context context;
     AddAdapter.RemovePosition removePosition;
+    private MyDataStore myDataStore;
     public interface RemovePosition
     {
         void getPosition(int i);
@@ -60,7 +65,7 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
             public void onClick(View v) {
                 removePosition.getPosition(position);
                 //onItemDeleted.onItemDelete(AddAdapters.get(position).getS_phonenum());
-                MyLog.e(TAG, "Recyclerview>>home begin>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
+                //MyLog.e(TAG, "Recyclerview>>home begin>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
                /* addPhonenumArrayList.remove(position);
                 notifyDataSetChanged();
                 MyLog.e(TAG, "Recyclerview>>home after>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));*/
@@ -83,22 +88,32 @@ public class AddAdapter extends RecyclerView.Adapter<AddAdapter.ViewHolder> {
         holder.msg_uncheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyLog.e(TAG,"click>>Checked>>");
+                MyLog.e(TAG,"click>>Checked>>"+position+"\n"+ addPhonenum.getS_name()+">>"+
+                        addPhonenum.getS_phonenum());
                 holder.msg_check.setVisibility(View.VISIBLE);
 
+                CheckData checkData1=new CheckData(
+                        addPhonenum.getS_name(),
+                        addPhonenum.getS_phonenum()
+                );
+                checkData.add(checkData1);
+                MyLog.e(TAG, "click>>check::\n" + new GsonBuilder().setPrettyPrinting().create().toJson(checkData));
                // holder.msg_uncheck.setVisibility(View.GONE);
                  //check and send msg
             }
         });
+        myDataStore.setCheckData(checkData);
         holder.msg_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyLog.e(TAG,"click>>Un Checked>>");
+                MyLog.e(TAG,"click>>Un Checked>>"+position);
                 holder.msg_uncheck.setVisibility(View.VISIBLE);
                 holder.msg_check.setVisibility(View.GONE);
+
                  //check and send msg
             }
         });
+
         //MyLog.e(TAG, "Recyclerview>>home>>\n" + new GsonBuilder().setPrettyPrinting().create().toJson(addPhonenumArrayList));
        // total count.get_TotalItemCount(String.valueOf(addAdapters.size()));
     }

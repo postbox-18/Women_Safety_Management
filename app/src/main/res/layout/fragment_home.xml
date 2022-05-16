@@ -12,11 +12,11 @@
     <LinearLayout
         android:id="@+id/heading"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_weight="0.0085"
+        app:layout_constraintVertical_weight="0.085"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btn_layout"
         android:orientation="vertical">
@@ -71,9 +71,8 @@
     <LinearLayout
         android:id="@+id/btn_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        android:visibility="gone"
         app:layout_constraintVertical_weight="0.5"
         app:layout_constraintBottom_toTopOf="@id/name_ct_layout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,41 +92,12 @@
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent" />
     </LinearLayout>
-    <!--<com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/press_send_button"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:baselineAligned="false"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/press_start_button" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/send_email"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_centerInParent="true"
-        android:baselineAligned="false"
-        android:scaleType="centerCrop"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/send_email" />-->
     <LinearLayout
         android:id="@+id/name_ct_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintVertical_weight="0.5"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -256,5 +226,35 @@
         app:maxImageSize="60dp"
         app:srcCompat="@drawable/msg_icon"
         app:tint="@null" />
+    <!--<com.airbnb.lottie.LottieAnimationView
+         android:id="@+id/press_send_button"
+         android:layout_width="match_parent"
+         android:layout_height="500dp"
+         android:layout_centerInParent="true"
+         android:visibility="gone"
+         android:baselineAligned="false"
+         android:scaleType="centerCrop"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         app:lottie_autoPlay="true"
+         app:lottie_loop="true"
+         app:lottie_rawRes="@raw/press_start_button" />
 
+     <com.airbnb.lottie.LottieAnimationView
+         android:id="@+id/send_email"
+         android:layout_width="match_parent"
+         android:layout_height="500dp"
+         android:layout_centerInParent="true"
+         android:baselineAligned="false"
+         android:scaleType="centerCrop"
+         android:visibility="gone"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         app:lottie_autoPlay="true"
+         app:lottie_loop="true"
+         app:lottie_rawRes="@raw/send_email" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

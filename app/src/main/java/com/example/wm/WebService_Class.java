@@ -13,6 +13,7 @@ public class WebService_Class {
     protected final String Arraylist = "Arraylist";
     protected final String CheckedBox = "CheckedBox";
     protected final String Location = "Location";
+    protected final String CheckArrayList = "CheckArrayList";
 
     public WebService_Class(Context context) {
         sharedPreferences = context.getSharedPreferences("Web_Config", Context.MODE_PRIVATE);
@@ -101,6 +102,16 @@ public class WebService_Class {
     public String getLocation()
     {
         return sharedPreferences.getString(Location, null);
+    }
+
+
+    public void setCheckArrayList(String checkedBoxarray){
+        sharedPreferences.edit().putString(CheckArrayList, checkedBoxarray).commit();
+
+    }
+    public String getCheckArrayList()
+    {
+        return sharedPreferences.getString(CheckArrayList, null);
     }
 
 
