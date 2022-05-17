@@ -16,16 +16,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.wm.MainActivity;
+import com.example.wm.Class.WebService_Class;
 import com.example.wm.R;
-import com.example.wm.WebService_Class;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Timer;

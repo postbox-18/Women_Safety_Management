@@ -7,8 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.wm.Class.AddPhonenum;
+import com.example.wm.Class.WebService_Class;
 import com.example.wm.Fragment.CheckData;
-import com.example.wm.WebService_Class;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

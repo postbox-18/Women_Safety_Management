@@ -1,4 +1,5 @@
-package com.example.wm;
+package com.example.wm.Class;
+
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -36,29 +37,29 @@ public class WebService_Class {
     }
     public void setName(String name){
         sharedPreferences.edit().putString(Name, name).commit();
-      
+
     }
     public String getName()
     {
 
         return sharedPreferences.getString(Name, null);
     }
-    
-    
+
+
     public void setPin(String pin){
         sharedPreferences.edit().putString(Pin, pin).commit();
-      
+
     }
     public static String getPin()
     {
         editor.apply();
         return sharedPreferences.getString(Pin, null);
     }
-    
-    
+
+
     public void setPhonenum(String phonenum){
         sharedPreferences.edit().putString(Phonenum, phonenum).commit();
-      
+
     }
     public String getPhonenum()
     {
@@ -116,5 +117,5 @@ public class WebService_Class {
 
 
 
-    
+
 }

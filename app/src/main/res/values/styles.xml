@@ -1,10 +1,8 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar"
 
-
-        >
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
 
         <!--For MaterialComponents, we need to define these, so that default dons not come-->
         <item name="textInputStyle">@style/myFilledBox</item>

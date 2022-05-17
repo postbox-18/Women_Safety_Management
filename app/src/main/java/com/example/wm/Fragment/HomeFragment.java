@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -32,20 +31,15 @@ import android.widget.Toast;
 import com.example.wm.Adapter.AddAdapter;
 import com.example.wm.Class.AddPhonenum;
 import com.example.wm.Class.MyLog;
+import com.example.wm.Class.WebService_Class;
 import com.example.wm.R;
 import com.example.wm.ViewModel.MyDataStore;
-import com.example.wm.WebService_Class;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

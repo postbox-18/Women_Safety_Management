@@ -12,15 +12,14 @@ import android.os.Message;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alimuzaffar.lib.pin.PinEntryEditText;
+import com.example.wm.Class.WebService_Class;
 import com.example.wm.MainActivity;
 import com.example.wm.Class.MyLog;
 import com.example.wm.R;
-import com.example.wm.WebService_Class;
 
 import java.util.Timer;
 import java.util.TimerTask;

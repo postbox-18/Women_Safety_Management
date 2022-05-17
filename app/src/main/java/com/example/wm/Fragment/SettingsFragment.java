@@ -1,7 +1,6 @@
 package com.example.wm.Fragment;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -10,7 +9,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +21,10 @@ import android.widget.Toast;
 
 import com.alimuzaffar.lib.pin.PinEntryEditText;
 import com.example.wm.Class.MyLog;
+import com.example.wm.Class.WebService_Class;
 import com.example.wm.Login_Register.LoginActivity;
 import com.example.wm.R;
-import com.example.wm.WebService_Class;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
